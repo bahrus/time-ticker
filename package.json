@@ -1,0 +1,19 @@
+{
+  "name": "time-ticker",
+  "version": "0.0.0",
+  "description": "TBD",
+  "main": "time-ticker.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahrus/time-ticker.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/bahrus/time-ticker/issues"
+  },
+  "homepage": "https://github.com/bahrus/time-ticker#readme"
+}
