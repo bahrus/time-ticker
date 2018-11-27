@@ -1,7 +1,7 @@
 {
   "name": "time-ticker",
-  "version": "0.0.2",
-  "description": "TBD",
+  "version": "0.0.1",
+  "description": "Web Component that fires event periodically",
   "main": "time-ticker.js",
   "dependencies": {
     "xtal-latx": "0.0.78"

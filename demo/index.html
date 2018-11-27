@@ -10,24 +10,22 @@
 
 <body>
     <div>
-        <p-d on="text-setting-complete" to="time-ticker" prop="enabled" val="target.text"></p-d>
-        <xtal-deco>
-            <script>
-                ({
-                    setters: {
-                        items: [
-                            'Neo,',
-                            'sooner or later',
-                            'you\'re going to realize',
-                            'just as I did',
-                            'that there\'s a difference',
-                            'between knowing the path',
-                            'and walking the path'
-                        ]
-                    }
-                })
-            </script>
-        </xtal-deco>
+        <p-d on="text-setting-complete" to="time-ticker" prop="enabled" val="target.id"></p-d>
+        <xtal-deco><script>
+        ({
+            setters: {
+                items: [
+                    'Neo,',
+                    'sooner or later',
+                    'you\'re going to realize',
+                    'just as I did',
+                    'that there\'s a difference',
+                    'between knowing the path',
+                    'and walking the path'
+                ]
+            }
+        })
+        </script></xtal-deco>
         <time-ticker disabled="2" loop wait></time-ticker>
         <p-d-r on="tick" to="co-depends-text-scramble" prop="text" val="target.value.item"></p-d-r> 
         <div class="container" p-d-if="p-d-r">
