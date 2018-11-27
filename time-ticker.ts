@@ -17,6 +17,9 @@ export interface IValue{
 export class TimeTicker extends XtallatX(HTMLElement){
     _idx: number = -1;
     value!: IValue;
+    /**
+     * Current pointer
+     */
     get idx(){
         return this._idx;
     }
@@ -34,6 +37,9 @@ export class TimeTicker extends XtallatX(HTMLElement){
         }
         this.onPropsChange();
     }
+    /**
+     * Remove disabled
+     */
     set enabled(nv: any){
         if(nv) this.disabled = false;
     }
@@ -52,6 +58,10 @@ export class TimeTicker extends XtallatX(HTMLElement){
         return TimeTicker.properties;
     }
     _items!: any[];
+    /**
+     * Items to rotate through.
+     * Sets repeat to length
+     */
     get items(){
         return this._items;
     }
@@ -60,6 +70,9 @@ export class TimeTicker extends XtallatX(HTMLElement){
         if(v) this.repeat = v.length;
     }
     _duration: number = 1000;
+    /**
+     * Number of millisecods to wait
+     */
     get duration(){
         return this._duration;
     }
@@ -67,6 +80,10 @@ export class TimeTicker extends XtallatX(HTMLElement){
         this.attr(duration, nv.toString());
     }
     _repeat: number = Infinity;
+    /** 
+     * Number of times to repeat before setting counter back to 0
+     * Setting Items will set this automatically
+     */
     get repeat(){
         return this._repeat;
     }
@@ -74,6 +91,9 @@ export class TimeTicker extends XtallatX(HTMLElement){
         this.attr(repeat, nv.toString());
     }
     _loop!: boolean;
+    /**
+     * Indicates whether should cycle or stop
+     */
     get loop(){
         return this._loop;
     }
@@ -81,6 +101,9 @@ export class TimeTicker extends XtallatX(HTMLElement){
         this.attr(loop, nv, '');
     }
     _wait!:boolean;
+    /**
+     * Disable after every tick
+     */
     get wait(){
         return this._wait;
     }
