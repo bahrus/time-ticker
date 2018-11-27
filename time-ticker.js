@@ -4,11 +4,12 @@ const items = 'items';
 const duration = 'duration';
 const repeat = 'repeat';
 const loop = 'loop';
+const wait = 'wait';
 //const loop = 'loop';
 export class TimeTicker extends XtallatX(HTMLElement) {
     constructor() {
         super(...arguments);
-        this._idx = 0;
+        this._idx = -1;
         this._duration = 1000;
         this._repeat = Infinity;
         this._t = [];
@@ -25,10 +26,17 @@ export class TimeTicker extends XtallatX(HTMLElement) {
             time: new Date(),
         };
         this.de('tick', this.value, true);
+        if (this._wait) {
+            this.disabled = true;
+        }
         this.onPropsChange();
     }
+    set enabled(nv) {
+        if (nv)
+            this.disabled = false;
+    }
     static get properties() {
-        return [disabled, items, duration, repeat, loop];
+        return [disabled, items, duration, repeat, loop, wait];
     }
     static get is() { return 'time-ticker'; }
     connectedCallback() {
@@ -66,6 +74,12 @@ export class TimeTicker extends XtallatX(HTMLElement) {
     set loop(nv) {
         this.attr(loop, nv, '');
     }
+    get wait() {
+        return this._wait;
+    }
+    set wait(nv) {
+        this.attr(wait, nv, '');
+    }
     attributeChangedCallback(n, ov, nv) {
         switch (n) {
             case disabled:
@@ -81,13 +95,19 @@ export class TimeTicker extends XtallatX(HTMLElement) {
                 this._repeat = parseInt(nv);
                 break;
             case loop:
-                this._loop = nv !== null;
+            case wait:
+                this['_' + n] = nv !== null;
+                break;
         }
         this.onPropsChange();
     }
     onPropsChange() {
         if (this._disabled || !this._conn)
             return;
+        if (this._idx === -1) {
+            this.idx++;
+            return;
+        }
         if (this._idx >= this._repeat - 1) {
             if (this.loop) {
                 this._idx = -1;

@@ -5,7 +5,7 @@ const items = 'items';
 const duration = 'duration';
 const repeat = 'repeat';
 const loop = 'loop';
-
+const wait = 'wait';
 export interface IValue{
     idx: number,
     item: any,
@@ -15,7 +15,7 @@ export interface IValue{
 //const loop = 'loop';
 
 export class TimeTicker extends XtallatX(HTMLElement){
-    _idx: number = 0;
+    _idx: number = -1;
     value!: IValue;
     get idx(){
         return this._idx;
@@ -29,10 +29,16 @@ export class TimeTicker extends XtallatX(HTMLElement){
             time: new Date(),
         };
         this.de('tick', this.value, true);
+        if(this._wait){
+            this.disabled = true;
+        }
         this.onPropsChange();
     }
+    set enabled(nv: any){
+        if(nv) this.disabled = false;
+    }
     static get properties(){
-        return [disabled, items, duration, repeat, loop];
+        return [disabled, items, duration, repeat, loop, wait];
     }
     static get is(){return 'time-ticker';}
     _conn!: boolean;
@@ -74,6 +80,13 @@ export class TimeTicker extends XtallatX(HTMLElement){
     set loop(nv){
         this.attr(loop, nv, '');
     }
+    _wait!:boolean;
+    get wait(){
+        return this._wait;
+    }
+    set wait(nv){
+        this.attr(wait, nv, '');
+    }
     attributeChangedCallback(n: string, ov: string, nv: string){
         switch(n){
             case disabled:
@@ -89,13 +102,19 @@ export class TimeTicker extends XtallatX(HTMLElement){
                 this._repeat = parseInt(nv);
                 break;
             case loop:
-                this._loop = nv !== null;
+            case wait:
+                (<any>this)['_' + n] = nv !== null;
+                break;
         }
         this.onPropsChange();
     }
     _t: number[]  = [];
     onPropsChange(){
         if(this._disabled || !this._conn) return;
+        if(this._idx === -1) {
+            this.idx++;
+            return;
+        }
         if(this._idx >= this._repeat -1) {
             if(this.loop){
                 this._idx = -1;
@@ -112,6 +131,7 @@ export class TimeTicker extends XtallatX(HTMLElement){
         this._t.push(setTimeout(() =>{
             this.idx++;
         }, this._duration));
+
     }
 }
 define(TimeTicker);
