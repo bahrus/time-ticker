@@ -2,7 +2,7 @@
 
 <a href="https://nodei.co/npm/time-ticker/"><img src="https://nodei.co/npm/time-ticker.png"></a>
 
-<img src="http://img.badgesize.io/https://cdn.jsdelivr.net/npm/tim-ticker@0.0.2/dist/time-ticker.iife.min.js?compression=gzip">
+<img src="http://img.badgesize.io/https://cdn.jsdelivr.net/npm/time-ticker@0.0.2/dist/time-ticker.iife.min.js?compression=gzip">
 
 # time-ticker
 
