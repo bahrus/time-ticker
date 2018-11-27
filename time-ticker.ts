@@ -4,6 +4,7 @@ import {define} from 'xtal-latx/define.js';
 const items = 'items';
 const duration = 'duration';
 const repeat = 'repeat';
+const loop = 'loop';
 
 export interface IValue{
     idx: number,
@@ -31,7 +32,7 @@ export class TimeTicker extends XtallatX(HTMLElement){
         this.onPropsChange();
     }
     static get properties(){
-        return [disabled, items, duration, repeat];
+        return [disabled, items, duration, repeat, loop];
     }
     static get is(){return 'time-ticker';}
     _conn!: boolean;
@@ -50,6 +51,7 @@ export class TimeTicker extends XtallatX(HTMLElement){
     }
     set items(v){
         this._items = v;
+        if(v) this.repeat = v.length;
     }
     _duration: number = 1000;
     get duration(){
@@ -65,14 +67,18 @@ export class TimeTicker extends XtallatX(HTMLElement){
     set repeat(nv){
         this.attr(repeat, nv.toString());
     }
-    
+    _loop!: boolean;
+    get loop(){
+        return this._loop;
+    }
+    set loop(nv){
+        this.attr(loop, nv, '');
+    }
     attributeChangedCallback(n: string, ov: string, nv: string){
         switch(n){
             case disabled:
                 this._disabled = nv !== null;
-                if(!this._disabled){
-                    this._idx = 0;
-                }
+                break;
             case items:
                 this._items = JSON.parse(nv);
                 break;
@@ -82,18 +88,30 @@ export class TimeTicker extends XtallatX(HTMLElement){
             case repeat:
                 this._repeat = parseInt(nv);
                 break;
+            case loop:
+                this._loop = nv !== null;
         }
         this.onPropsChange();
     }
+    _t: number[]  = [];
     onPropsChange(){
         if(this._disabled || !this._conn) return;
-        if(this._idx > this._repeat) {
-            this.disabled = true;
-            return;
+        if(this._idx >= this._repeat -1) {
+            if(this.loop){
+                this._idx = -1;
+            }else{
+                this.disabled = true;
+                return;
+            }
         }
-        setTimeout(() =>{
+        while(this._t.length > 0){
+            const t = this._t.pop();
+            clearTimeout(t);
+        }
+        
+        this._t.push(setTimeout(() =>{
             this.idx++;
-        }, this._duration);
+        }, this._duration));
     }
 }
 define(TimeTicker);
