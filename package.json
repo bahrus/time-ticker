@@ -1,11 +1,11 @@
 {
   "name": "time-ticker",
-  "version": "0.0.5",
+  "version": "0.0.6",
   "description": "Web Component that fires event periodically",
   "main": "time-ticker.js",
   "dependencies": {},
   "peerDependencies": {
-    "trans-render":"0.0.115",
+    "trans-render": "0.0.115",
     "xtal-element": "0.0.62"
   },
   "devDependencies": {
