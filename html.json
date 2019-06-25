@@ -1,0 +1,31 @@
+{
+    "version": "1",
+    "tags":[
+        {
+            "name": "time-ticker",
+            "description": "A non-visible custom element that fires an event periodically.",
+            "attributes":[
+                {
+                    "name": "items",
+                    "description": "Items to rotate through.  Sets repeat to length."
+                },
+                {
+                    "name": "duration",
+                    "description": "Number of milliseconds to wait."
+                },
+                {
+                    "name": "repeat",
+                    "description": "Number of times to repeat before setting counter back to 0.  Setting Items will set this automatically."
+                },
+                {
+                    "name": "loop",
+                    "description": "Indicates whether should cycle or stop."
+                },
+                {
+                    "name": "wait",
+                    "description": "Disable after every tick."
+                }
+            ]
+        }
+    ]
+}

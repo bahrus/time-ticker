@@ -1,5 +1,6 @@
-import {XtallatX, disabled} from 'xtal-latx/xtal-latx.js';
-import {define} from 'xtal-latx/define.js';
+import {XtallatX} from 'xtal-element/xtal-latx.js';
+import {define} from 'trans-render/define.js';
+import {disabled, hydrate} from 'trans-render/hydrate.js';
 
 const items = 'items';
 const duration = 'duration';
@@ -14,7 +15,7 @@ export interface IValue{
 
 //const loop = 'loop';
 
-export class TimeTicker extends XtallatX(HTMLElement){
+export class TimeTicker extends XtallatX(hydrate(HTMLElement)){
     _idx: number = -1;
     value!: IValue;
     /**
@@ -50,7 +51,7 @@ export class TimeTicker extends XtallatX(HTMLElement){
     _conn!: boolean;
     connectedCallback(){
         this.style.display = 'none';
-        super._upgradeProperties(TimeTicker.properties);
+        super.propUp(TimeTicker.properties);
         this._conn = true;
         this.onPropsChange();
     }
@@ -151,7 +152,7 @@ export class TimeTicker extends XtallatX(HTMLElement){
             clearTimeout(t);
         }
         
-        this._t.push(setTimeout(() =>{
+        this._t.push(window.setTimeout(() =>{
             this.idx++;
         }, this._duration));
 
