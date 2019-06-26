@@ -9,7 +9,7 @@
     "xtal-element": "0.0.62"
   },
   "devDependencies": {
-    "@types/node": "12.0.7",
+    "@types/node": "12.0.10",
     "@types/tape": "4.2.33",
     "@webcomponents/webcomponentsjs": "2.2.10",
     "jiife": "0.0.12",
