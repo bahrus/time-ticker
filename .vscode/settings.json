@@ -7,7 +7,7 @@
     "json.schemas": [
         {
             "fileMatch": ["/html.json"],
-            "url": "https://unpkg.com/wc-info@0.0.58/schema.json"
+            "url": "https://unpkg.com/wc-info@0.0.65/schema.json"
         },
         {
             "fileMatch": ["/css.json"],

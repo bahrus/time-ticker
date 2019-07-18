@@ -33,27 +33,33 @@
             "properties":[
                 {
                     "name": "disabled",
-                    "description": "Doesn't fire events when true."
+                    "description": "Doesn't fire events when true.",
+                    "type": "boolean"
                 },
                 {
                     "name": "items",
-                    "description": "Items to rotate through.  Sets repeat to length."
+                    "description": "Items to rotate through.  Sets repeat to length.",
+                    "type": "boolean"
                 },
                 {
                     "name": "duration",
-                    "description": "Number of milliseconds to wait."
+                    "description": "Number of milliseconds to wait.",
+                    "type": "number"
                 },
                 {
                     "name": "repeat",
-                    "description": "Number of times to repeat before setting counter back to 0.  Setting Items will set this automatically."
+                    "description": "Number of times to repeat before setting counter back to 0.  Setting Items will set this automatically.",
+                    "type": "number"
                 },
                 {
                     "name": "loop",
-                    "description": "Indicates whether should cycle or stop."
+                    "description": "Indicates whether should cycle or stop.",
+                    "type": "boolean"
                 },
                 {
                     "name": "wait",
-                    "description": "Disable after every tick."
+                    "description": "Disable after every tick.",
+                    "type": "boolean"
                 }                
             ],
             "customEvents":[
