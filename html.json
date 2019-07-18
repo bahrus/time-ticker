@@ -4,6 +4,7 @@
         {
             "name": "time-ticker",
             "description": "A non-visible custom element that fires an event periodically.",
+            "selfResolvingModulePath": "https://unpkg.com/time-ticker@0.0.8/time-ticker.js?module",
             "attributes":[
                 {
                     "name": "disabled",
