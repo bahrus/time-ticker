@@ -1,0 +1,95 @@
+{
+  "version": 2,
+  "tags": [
+    {
+      "name": "time-ticker",
+      "jsDoc": "/**\n * @element time-ticker\n */",
+      "attributes": [
+        {
+          "name": "items",
+          "description": "Items to rotate through.\nSets property repeat to the number of items (length)\nAttribute support (must be in JSON format)",
+          "jsDoc": "/**\n     * Items to rotate through.\n     * Sets property repeat to the number of items (length)\n     * Attribute support (must be in JSON format)\n     * @attr\n     */",
+          "type": "any"
+        },
+        {
+          "name": "duration",
+          "description": "Number of millisecods to wait",
+          "jsDoc": "/**\n     * Number of millisecods to wait\n     * @attr\n     */",
+          "type": "number"
+        },
+        {
+          "name": "loop",
+          "description": "Indicates whether should cycle or stop",
+          "jsDoc": "/**\n     * Indicates whether should cycle or stop\n     * @attr\n     */",
+          "type": "any"
+        },
+        {
+          "name": "wait",
+          "description": "Disable after every tick",
+          "jsDoc": "/**\n     * Disable after every tick\n     * @attr\n    */",
+          "type": "any"
+        }
+      ],
+      "properties": [
+        {
+          "name": "val",
+          "type": "\"set\" | \"remove\""
+        },
+        {
+          "name": "disabled",
+          "type": "boolean"
+        },
+        {
+          "name": "evCount",
+          "type": "{ [key: string]: number; }"
+        },
+        {
+          "name": "asIs",
+          "type": "\"\" | \"-changed\""
+        },
+        {
+          "name": "idx",
+          "description": "Current count",
+          "jsDoc": "/**\n     * Current count\n     * @fires tick\n    */",
+          "type": "any"
+        },
+        {
+          "name": "enabled",
+          "description": "Remove disabled",
+          "jsDoc": "/**\n     * Remove disabled\n     */",
+          "type": "any"
+        },
+        {
+          "name": "items",
+          "description": "Items to rotate through.\nSets property repeat to the number of items (length)\nAttribute support (must be in JSON format)",
+          "jsDoc": "/**\n     * Items to rotate through.\n     * Sets property repeat to the number of items (length)\n     * Attribute support (must be in JSON format)\n     * @attr\n     */",
+          "type": "any"
+        },
+        {
+          "name": "duration",
+          "description": "Number of millisecods to wait",
+          "jsDoc": "/**\n     * Number of millisecods to wait\n     * @attr\n     */",
+          "type": "number"
+        },
+        {
+          "name": "repeat",
+          "type": "number"
+        },
+        {
+          "name": "loop",
+          "description": "Indicates whether should cycle or stop",
+          "jsDoc": "/**\n     * Indicates whether should cycle or stop\n     * @attr\n     */",
+          "type": "any"
+        },
+        {
+          "name": "wait",
+          "description": "Disable after every tick",
+          "jsDoc": "/**\n     * Disable after every tick\n     * @attr\n    */",
+          "type": "any"
+        }
+      ],
+      "events": [],
+      "slots": []
+    }
+  ]
+}

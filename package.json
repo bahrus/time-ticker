@@ -3,21 +3,23 @@
   "version": "0.0.10",
   "description": "Web Component that fires event periodically",
   "main": "time-ticker.js",
+  "module": "time-ticker.js",
   "dependencies": {},
   "peerDependencies": {},
   "devDependencies": {
-    "trans-render": "0.0.127",
-    "xtal-element": "0.0.78",
-    "@types/node": "12.6.8",
+    "trans-render": "0.0.131",
+    "xtal-element": "0.0.83",
+    "@types/node": "12.7.5",
     "@types/tape": "4.2.33",
     "@webcomponents/webcomponentsjs": "2.2.10",
     "jiife": "0.0.12",
     "tape": "4.11.0",
-    "xtal-test": "0.0.19"
+    "xtal-test": "0.0.20"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node node_modules/xtal-test/serve.js"
+    "serve": "node node_modules/xtal-test/serve.js",
+    "doc": "wca analyze time-ticker.js --outFile custom-elements.json"
   },
   "repository": {
     "type": "git",

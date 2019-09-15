@@ -1,12 +1,16 @@
-import { XtallatX, disabled } from 'xtal-latx/xtal-latx.js';
-import { define } from 'xtal-latx/define.js';
+import { XtallatX } from 'xtal-element/xtal-latx.js';
+import { define } from 'trans-render/define.js';
+import { disabled, hydrate } from 'trans-render/hydrate.js';
 const items = 'items';
 const duration = 'duration';
 const repeat = 'repeat';
 const loop = 'loop';
 const wait = 'wait';
 //const loop = 'loop';
-export class TimeTicker extends XtallatX(HTMLElement) {
+/**
+ * @element time-ticker
+ */
+export class TimeTicker extends XtallatX(hydrate(HTMLElement)) {
     constructor() {
         super(...arguments);
         this._idx = -1;
@@ -14,12 +18,13 @@ export class TimeTicker extends XtallatX(HTMLElement) {
         this._repeat = Infinity;
         this._t = [];
     }
-    /**
-     * Current pointer
-     */
     get idx() {
         return this._idx;
     }
+    /**
+     * Current count
+     * @fires tick
+    */
     set idx(nv) {
         this._idx = nv;
         this.attr('tick', nv.toString());
@@ -47,31 +52,34 @@ export class TimeTicker extends XtallatX(HTMLElement) {
     static get is() { return 'time-ticker'; }
     connectedCallback() {
         this.style.display = 'none';
-        super._upgradeProperties(TimeTicker.properties);
+        super.propUp(TimeTicker.properties);
         this._conn = true;
         this.onPropsChange();
     }
     static get observedAttributes() {
         return TimeTicker.properties;
     }
-    /**
-     * Items to rotate through.
-     * Sets repeat to length
-     */
     get items() {
         return this._items;
     }
+    /**
+     * Items to rotate through.
+     * Sets property repeat to the number of items (length)
+     * Attribute support (must be in JSON format)
+     * @attr
+     */
     set items(v) {
         this._items = v;
         if (v)
             this.repeat = v.length;
     }
-    /**
-     * Number of millisecods to wait
-     */
     get duration() {
         return this._duration;
     }
+    /**
+     * Number of millisecods to wait
+     * @attr
+     */
     set duration(nv) {
         this.attr(duration, nv.toString());
     }
@@ -85,21 +93,23 @@ export class TimeTicker extends XtallatX(HTMLElement) {
     set repeat(nv) {
         this.attr(repeat, nv.toString());
     }
-    /**
-     * Indicates whether should cycle or stop
-     */
     get loop() {
         return this._loop;
     }
+    /**
+     * Indicates whether should cycle or stop
+     * @attr
+     */
     set loop(nv) {
         this.attr(loop, nv, '');
     }
-    /**
-     * Disable after every tick
-     */
     get wait() {
         return this._wait;
     }
+    /**
+     * Disable after every tick
+     * @attr
+    */
     set wait(nv) {
         this.attr(wait, nv, '');
     }
@@ -144,7 +154,7 @@ export class TimeTicker extends XtallatX(HTMLElement) {
             const t = this._t.pop();
             clearTimeout(t);
         }
-        this._t.push(setTimeout(() => {
+        this._t.push(window.setTimeout(() => {
             this.idx++;
         }, this._duration));
     }
