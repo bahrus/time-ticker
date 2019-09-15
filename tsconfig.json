@@ -5,7 +5,8 @@
 		"sourceMap": true,
 		"experimentalDecorators": true,
 		"strict": true,
-		"newLine": "LF"
+		"newLine": "LF",
+		"watch": true
 	},
 	"exclude":[
 		"build",

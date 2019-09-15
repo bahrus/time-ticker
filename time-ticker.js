@@ -9,6 +9,7 @@ const wait = 'wait';
 //const loop = 'loop';
 /**
  * @element time-ticker
+ * @event tick - Dipatched every time timer goes off
  */
 export class TimeTicker extends XtallatX(hydrate(HTMLElement)) {
     constructor() {
@@ -23,7 +24,6 @@ export class TimeTicker extends XtallatX(hydrate(HTMLElement)) {
     }
     /**
      * Current count
-     * @fires tick
     */
     set idx(nv) {
         this._idx = nv;

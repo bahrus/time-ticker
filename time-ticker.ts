@@ -17,6 +17,7 @@ export interface IValue{
 
 /**
  * @element time-ticker
+ * @event tick - Dipatched every time timer goes off
  */
 export class TimeTicker extends XtallatX(hydrate(HTMLElement)){
     _idx: number = -1;
@@ -27,7 +28,6 @@ export class TimeTicker extends XtallatX(hydrate(HTMLElement)){
     }
     /**
      * Current count
-     * @fires tick
     */
     set idx(nv){
         this._idx = nv;

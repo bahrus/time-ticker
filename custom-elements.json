@@ -3,7 +3,7 @@
   "tags": [
     {
       "name": "time-ticker",
-      "jsDoc": "/**\n * @element time-ticker\n */",
+      "jsDoc": "/**\n * @element time-ticker\n * @event tick - Dipatched every time timer goes off\n */",
       "attributes": [
         {
           "name": "items",
@@ -41,6 +41,8 @@
         },
         {
           "name": "evCount",
+          "description": "Tracks how many times each event type was called.",
+          "jsDoc": "/**\r\n         * Tracks how many times each event type was called.\r\n         */",
           "type": "{ [key: string]: number; }"
         },
         {
@@ -50,7 +52,7 @@
         {
           "name": "idx",
           "description": "Current count",
-          "jsDoc": "/**\n     * Current count\n     * @fires tick\n    */",
+          "jsDoc": "/**\n     * Current count\n    */",
           "type": "any"
         },
         {
@@ -88,7 +90,12 @@
           "type": "any"
         }
       ],
-      "events": [],
+      "events": [
+        {
+          "name": "tick",
+          "description": "Dipatched every time timer goes off"
+        }
+      ],
       "slots": []
     }
   ]
