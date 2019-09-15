@@ -14,7 +14,8 @@
     "@webcomponents/webcomponentsjs": "2.2.10",
     "jiife": "0.0.12",
     "tape": "4.11.0",
-    "xtal-test": "0.0.20"
+    "xtal-test": "0.0.20",
+    "es-module-shims": "0.4.4"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
