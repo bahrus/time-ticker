@@ -29,9 +29,12 @@ const onDuration = ({ duration, disabled, self }) => {
     if (disabled) {
         if (self.controller !== undefined) {
             self.controller.abort();
+            delete self.controller;
             return;
         }
     }
+    if (self.controller)
+        return;
     // https://youtu.be/MCi6AZMkxcU?t=719 nope
     // https://youtu.be/MCi6AZMkxcU?t=918 nope
     // https://youtu.be/MCi6AZMkxcU?t=1152 nope
