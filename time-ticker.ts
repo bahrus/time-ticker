@@ -43,18 +43,9 @@ const onDuration = ({duration, disabled, self}: TimeTicker) => {
 
     // Create an animation callback every second:
     animationInterval(duration, self.controller.signal, time => {
-        console.log('tick!', time);
-        let newIdx = self.idx!;
-        if(newIdx >= self.repeat! - 1){
-            if(self.loop){
-                newIdx = -1;
-            }else{
-                self.disabled = true;
-                return;
-            }
-        }
-        self.idx = newIdx + 1;
+        self.nextIdx();
     });
+    self.nextIdx();
 }
 
 const propActions = [onIdxChange, onEnabled, onItems, onDuration] as PropAction[];
@@ -144,6 +135,19 @@ export class TimeTicker extends HTMLElement implements ReactiveSurface{
     
     onPropChange(name: string, propDef: PropDef, newVal: any){
         this.reactor.addToQueue(propDef, newVal);
+    }
+
+    nextIdx(){
+        let newIdx = this.idx!;
+        if(newIdx >= this.repeat! - 1){
+            if(this.loop){
+                newIdx = -1;
+            }else{
+                this.disabled = true;
+                return;
+            }
+        }
+        this.idx = newIdx + 1;
     }
 }
 

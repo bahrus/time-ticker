@@ -44,19 +44,9 @@ const onDuration = ({ duration, disabled, self }) => {
     self.controller = new AbortController();
     // Create an animation callback every second:
     animationInterval(duration, self.controller.signal, time => {
-        console.log('tick!', time);
-        let newIdx = self.idx;
-        if (newIdx >= self.repeat - 1) {
-            if (self.loop) {
-                newIdx = -1;
-            }
-            else {
-                self.disabled = true;
-                return;
-            }
-        }
-        self.idx = newIdx + 1;
+        self.nextIdx();
     });
+    self.nextIdx();
 };
 const propActions = [onIdxChange, onEnabled, onItems, onDuration];
 const obj = {
@@ -108,6 +98,19 @@ export class TimeTicker extends HTMLElement {
     }
     onPropChange(name, propDef, newVal) {
         this.reactor.addToQueue(propDef, newVal);
+    }
+    nextIdx() {
+        let newIdx = this.idx;
+        if (newIdx >= this.repeat - 1) {
+            if (this.loop) {
+                newIdx = -1;
+            }
+            else {
+                this.disabled = true;
+                return;
+            }
+        }
+        this.idx = newIdx + 1;
     }
 }
 TimeTicker.is = 'time-ticker';
