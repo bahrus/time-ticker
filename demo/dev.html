@@ -9,70 +9,64 @@
 </head>
 
 <body>
-    <div>
-        <p-d on="text-setting-complete" to="time-ticker" prop="enabled" val="target.text"></p-d>
-        <xtal-deco>
-            <script>
-                ({
-                    setters: {
-                        items: [
-                            'Neo,',
-                            'sooner or later',
-                            'you\'re going to realize',
-                            'just as I did',
-                            'that there\'s a difference',
-                            'between knowing the path',
-                            'and walking the path'
-                        ]
-                    }
-                })
-            </script>
-        </xtal-deco>
-        <time-ticker disabled="2" loop wait></time-ticker>
-        <p-d-r on="tick" to="co-depends-text-scramble" prop="text" val="target.value.item"></p-d-r> 
-        <div class="container" p-d-if="p-d-r">
-            <co-depends-text-scramble id="cdts" class="text"></co-depends-text-scramble>
-        </div>
-        <style>
-            @import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
-                    html,  
-                    div.body {
-                    font-family: 'Roboto Mono', monospace;
-                    background: #212121;
-                    height: 100%;
-                    }
-                    .container {
-                        height: 100%;
-                        width: 100%;
-                        justify-content: center;
-                        align-items: center;
-                        display: flex;
-                    }
-                    .text {
-                        font-weight: 100;
-                        font-size: 28px;
-                        color: #fafafa;
-                    }
-            .dud {
-              color: #757575;
-            }
-        </style>
-        <script defer src="../node_modules/es-module-shims/dist/es-module-shims.js"></script>
-        <script type="importmap-shim">
-        {
-            "imports": {
-            "xtal-element/": "../node_modules/xtal-element/",
-            "trans-render/": "../node_modules/trans-render/"
-            }
+    <on-to-me on=text-setting-complete to=[-enabled] val=target.text></on-to-me>
+    <time-ticker disabled loop -enabled>
+        <script nomodule=ish>
+            selfish.parentElement.items = [
+                'Neo,',
+                'sooner or later',
+                'you\'re going to realize',
+                'just as I did',
+                'that there\'s a difference',
+                'between knowing the path',
+                'and walking the path'
+            ]
+        </script>
+    </time-ticker>
+    <on-to-me on=tick to=[-text] me=1 val=target.value.item></on-to-me>
+    <co-depends-text-scramble -text class="text"></co-depends-text-scramble>
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
+        html,  
+        div.body {
+        font-family: 'Roboto Mono', monospace;
+        background: #212121;
+        height: 100%;
         }
-        </script>
-        <script  type="module-shim">
-            import '../time-ticker.js';
-        </script>
-        <script type="module" src="https://unpkg.com/p-et-alia@0.0.46/p-et-alia.js?module"></script>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/co-depends@0.0.4/text-scramble/dist/text-scramble.iife.min.js"></script>
-        <script type="module" src="https://cdn.jsdelivr.net/npm/xtal-decorator@0.0.33/dist/xtal-decorator.iife.js"></script>
-    </div>
+        .container {
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .text {
+            font-weight: 100;
+            font-size: 28px;
+            color: #fafafa;
+        }
+        .dud {
+            color: #757575;
+        }
+    </style>
+    <script defer src="../node_modules/es-module-shims/dist/es-module-shims.js"></script>
+    <script type="importmap-shim">
+    {
+        "imports": {
+            "xtal-element/": "../node_modules/xtal-element/",
+            "trans-render/": "../node_modules/trans-render/",
+            "css-observe/": "../node_modules/css-observe/",
+            "nomodule/": "../node_modules/nomodule/",
+            "on-to-me/": "../node_modules/on-to-me/"
+        }
+    }
+    </script>
+    <script  type="module-shim">
+        import '../time-ticker.js';
+        import 'nomodule/no-module.js';
+        import 'on-to-me/on-to-me.js';
+    </script>
+    <script type="module" src="https://cdn.jsdelivr.net/npm/co-depends@0.0.4/text-scramble/dist/text-scramble.iife.min.js"></script>
 </body>
 
 </html>

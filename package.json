@@ -5,11 +5,13 @@
   "main": "time-ticker.js",
   "module": "time-ticker.js",
   "dependencies": {
-    "xtal-element": "0.0.342"
+    "xtal-element": "0.0.346"
   },
   "devDependencies": {
     "@webcomponents/webcomponentsjs": "2.5.0",
     "es-module-shims": "0.9.0",
+    "nomodule": "0.0.10",
+    "on-to-me": "0.0.6",
     "xtal-test": "0.0.48"
   },
   "scripts": {

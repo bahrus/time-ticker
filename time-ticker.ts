@@ -23,39 +23,75 @@ const onItems = ({items, self}: TimeTicker) => {
     if(items === undefined) return;
     self.repeat = items.length;
 }
-const onDuration = ({duration, self}: TimeTicker) => {
+const onDuration = ({duration, disabled, self}: TimeTicker) => {
     if(duration === undefined) return;
+    if(disabled){
+        if(self.controller !== undefined){
+            self.controller.abort();
+            return;
+        }
+    }
     // https://youtu.be/MCi6AZMkxcU?t=719 nope
     // https://youtu.be/MCi6AZMkxcU?t=918 nope
     // https://youtu.be/MCi6AZMkxcU?t=1152 nope
     // https://youtu.be/MCi6AZMkxcU?t=1169 nope
     // https://youtu.be/MCi6AZMkxcU?t=1189 nope
     // https://gist.github.com/jakearchibald/cb03f15670817001b1157e62a076fe95
-    const controller = new AbortController();
+    self.controller = new AbortController();
 
     // Create an animation callback every second:
-    animationInterval(1000, controller.signal, time => {
-    console.log('tick!', time);
+    animationInterval(duration, self.controller.signal, time => {
+        console.log('tick!', time);
+        let newIdx = self.idx!;
+        if(newIdx >= self.repeat! - 1){
+            if(self.loop){
+                newIdx = -1;
+            }else{
+                self.disabled = true;
+                return;
+            }
+        }
+        self.idx = newIdx + 1;
     });
 }
 
 const propActions = [onIdxChange, onEnabled, onItems, onDuration] as PropAction[];
-
+const obj: PropDef = {
+    type: Object,
+    async: true
+}
+const bool: PropDef = {
+    type: Boolean,
+    async: false,
+    reflect: true,
+}
+const num: PropDef = {
+    type: Number,
+    async: true,
+    reflect: true,
+}
+const propDefMap: PropDefMap<TimeTicker> = {
+    items: obj, value:obj,
+    idx: num, duration: num, repeat: num,
+    enabled: bool, disabled: bool, loop: bool, wait: bool,
+}
 /**
  * @element time-ticker
  * @event tick - Dispatched every time timer goes off
  */
 export class TimeTicker extends HTMLElement implements ReactiveSurface{
     static is = 'time-ticker';
-    /**
-     * Current count
-    */
-    idx: number | undefined;// = -1;
-    disabled: boolean | undefined;
-    value: IValue | undefined;
+    static observedAttributes = ['disabled'];
     self = this;
     propActions = propActions;
     reactor = new xc.Rx(this);
+    controller: AbortController | undefined;
+    /**
+     * Current count
+    */
+   idx: number | undefined;// = -1;
+   disabled: boolean | undefined;
+   value: IValue | undefined;
     /**
      * Remove disabled
      */
@@ -91,13 +127,16 @@ export class TimeTicker extends HTMLElement implements ReactiveSurface{
      * @attr
     */
     wait: boolean | undefined;
-
+    attributeChangedCallback(n: string, ov: string, nv: string){
+        this.disabled = nv !== null;
+    }
     connectedCallback(){
         this.style.display = 'none';
         xc.hydrate<Partial<TimeTicker>>(this, slicedPropDefs, {
             idx: -1,
             duration: 1_000,
             repeat: Infinity,
+            enabled: true,
         });
     }
     
@@ -106,22 +145,7 @@ export class TimeTicker extends HTMLElement implements ReactiveSurface{
     }
 }
 
-const propDefMap: PropDefMap<TimeTicker> = {
-    items:{
-        type: Object
-    },
-    value: {
-        type: Object,
-    },
-    idx: {
-        type: Number,
-        reflect: true,
-    },
-    enabled: {
-        type: Boolean
-    },
 
-}
 const slicedPropDefs = xc.getSlicedPropDefs(propDefMap);
 xc.letThereBeProps(TimeTicker, slicedPropDefs.propDefs, 'onPropChange');
 xc.define(TimeTicker);
