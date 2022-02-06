@@ -9,7 +9,7 @@
 		"watch": true
 	},
 	"files": [
-		"time-ticker2.ts"
+		"time-ticker.ts"
 	]
 
 }
