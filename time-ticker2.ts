@@ -62,9 +62,11 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
             repeat: Infinity,
             enabled: true,
             disabled: false,
+            loop: false,
         },
         propInfo:{
             enabled:{
+                dry: false,
                 notify: {
                     toggleTo: 'disabled',
                 }
@@ -74,14 +76,16 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
                     dispatch: true,
                 },
                 parse: false,
-            }
+            },
         },
         style: {
             display: 'none',
         },
         actions: {
             onDisabled:'disabled',
-            onItems:'items',
+            onItems:{
+                ifAllOf: ['items']
+            },
             start:{
                 ifAllOf: ['duration'],
                 ifNoneOf: ['disabled'],
