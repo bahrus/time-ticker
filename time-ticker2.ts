@@ -4,7 +4,6 @@ import {animationInterval} from './animationInterval.js';
 
 export class TimeTicker extends HTMLElement implements TimeTickerActions{
 
-
     start({duration}: this) {
         const controller = new AbortController();
         animationInterval(duration, controller.signal, time => {
@@ -28,20 +27,24 @@ export class TimeTicker extends HTMLElement implements TimeTickerActions{
         }
     }
 
-    onTicks({idx, repeat, loop, wait}: this){
-        let newIdx = idx;
-        if(newIdx >= repeat - 1){
+    onTicks({idx, repeat, loop, wait, items}: this){
+        if(idx >= repeat - 1){
             if(loop){
-                newIdx = -1;
+                idx = -1;
             }else{
                 return {
                     disabled: true,
                 }
             }
         }
+        idx++;
         return {
-            idx: newIdx + 1,
+            idx,
             disabled: wait,
+            value: {
+                idx,
+                item: (items && items.length > idx) ? items[idx] : undefined,
+            }
         }
     }
 }
@@ -58,7 +61,38 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
             duration: 1_000,
             repeat: Infinity,
             enabled: true,
+            disabled: false,
+        },
+        propInfo:{
+            enabled:{
+                notify: {
+                    toggleTo: 'disabled',
+                }
+            },
+            value: {
+                notify: {
+                    dispatch: true,
+                },
+                parse: false,
+            }
+        },
+        style: {
+            display: 'none',
+        },
+        actions: {
+            onDisabled:'disabled',
+            onItems:'items',
+            start:{
+                ifAllOf: ['duration'],
+                ifNoneOf: ['disabled'],
+            },
+            onTicks: {
+                ifAllOf: ['ticks'],
+                ifKeyIn: ['repeat', 'loop', 'items'],
+                ifNoneOf: ['disabled'],
+            }
         }
-    }
+    },
+    superclass: TimeTicker,
 });
 

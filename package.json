@@ -8,7 +8,8 @@
     "xtal-element": "0.0.468"
   },
   "devDependencies": {
-    "xtal-test": "0.0.55"
+    "xtal-test": "0.0.55",
+    "on-to-me": "0.0.49"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",

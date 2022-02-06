@@ -22,5 +22,14 @@ export interface TimeTickerActions {
     start(self: this): {
         controller: AbortController | undefined,
     },
-    onItems(self: this): void,
+    onDisabled(self: this): {
+        controller: AbortController | undefined,
+    }
+    onItems(self: this): {
+        repeat: number,
+    }
+    onTicks(self: this): {
+        idx?: number | undefined,
+        disabled: boolean,
+    }
 }
