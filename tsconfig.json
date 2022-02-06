@@ -8,8 +8,8 @@
 		"newLine": "LF",
 		"watch": true
 	},
-	"exclude":[
-		"node_modules"
+	"files": [
+		"time-ticker2.ts"
 	]
 
 }
