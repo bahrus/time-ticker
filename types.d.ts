@@ -1,7 +1,6 @@
 export interface IValue{
     idx: number,
     item: any,
-    time: Date
 }
 
 export interface TimeTickerProps {
@@ -13,7 +12,6 @@ export interface TimeTickerProps {
     enabled: boolean,
     disabled: boolean,
     loop: boolean,
-    wait: boolean,
     ticks: 0,
     controller: AbortController,
 }
@@ -30,6 +28,7 @@ export interface TimeTickerActions {
     }
     onTicks(self: this): {
         idx?: number | undefined,
-        disabled: boolean,
+        disabled?: boolean,
+        value?: IValue,
     }
 }

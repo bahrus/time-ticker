@@ -11,7 +11,8 @@ export class TimeTicker extends HTMLElement {
             ticks: this.ticks++,
         };
     }
-    onDisabled({}) {
+    onDisabled({ controller }) {
+        controller.abort();
         return {
             controller: undefined,
         };
@@ -21,7 +22,7 @@ export class TimeTicker extends HTMLElement {
             repeat: items.length,
         };
     }
-    onTicks({ idx, repeat, loop, wait, items }) {
+    onTicks({ idx, repeat, loop, items }) {
         if (idx >= repeat - 1) {
             if (loop) {
                 idx = -1;
@@ -35,7 +36,6 @@ export class TimeTicker extends HTMLElement {
         idx++;
         return {
             idx,
-            disabled: wait,
             value: {
                 idx,
                 item: (items && items.length > idx) ? items[idx] : undefined,
@@ -47,7 +47,6 @@ const xe = new XE({
     config: {
         tagName: 'time-ticker',
         propDefaults: {
-            wait: false,
             ticks: 0,
             idx: -1,
             duration: 1_000,
@@ -74,7 +73,9 @@ const xe = new XE({
             display: 'none',
         },
         actions: {
-            onDisabled: 'disabled',
+            onDisabled: {
+                ifAllOf: ['disabled', 'controller']
+            },
             onItems: 'items',
             start: {
                 ifAllOf: ['duration'],
