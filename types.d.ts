@@ -36,3 +36,12 @@ export interface TimeTickerActions {
         value?: IValue,
     }
 }
+
+export interface TimeTickerInfo {
+    tagName: 'time-ticker',
+    props: TimeTickerProps,
+    methods: TimeTickerActions,
+    cssProps: {
+        '--duration': 'test',
+    }
+}
