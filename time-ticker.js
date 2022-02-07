@@ -5,6 +5,7 @@ export class TimeTicker extends HTMLElement {
         const controller = new AbortController();
         animationInterval(duration, controller.signal, time => {
             this.ticks++;
+            this.wait;
         });
         return {
             controller,

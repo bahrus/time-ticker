@@ -15,6 +15,13 @@ export interface TimeTickerProps {
     ticks: number,
     /**
      * Wait for the duration before firing the first tick.
+     * ```JSON
+     * {
+     *   "props": {
+     *   }
+     * }
+     * ```
+     * 
      */
     wait: boolean,
     controller: AbortController,
