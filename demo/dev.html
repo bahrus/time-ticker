@@ -9,8 +9,7 @@
 </head>
 
 <body>
-    <on-to-me on=text-setting-complete to=[-enabled] val=target.text></on-to-me>
-    <time-ticker disabled loop -enabled duration=4000 items='[
+    <time-ticker disabled loop duration=4000 items='[
         "Neo,",
         "sooner or later",
         "you`re going to realize",
@@ -20,7 +19,7 @@
         "and walking the path"
     ]'>
     </time-ticker>
-    <on-to-me on=value-changed to=[-text] me=1 val=target.value.item></on-to-me>
+    <on-to-me on=value-changed to=[-text] me=1 vft=value.item val=target.value.item></on-to-me>
     <co-depends-text-scramble -text class="text"></co-depends-text-scramble>
     <style>
         @import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';

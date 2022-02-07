@@ -4,14 +4,14 @@ import {animationInterval} from './animationInterval.js';
 
 export class TimeTicker extends HTMLElement implements TimeTickerActions{
 
-    start({duration}: this) {
+    start({duration, ticks, wait}: this) {
         const controller = new AbortController();
         animationInterval(duration, controller.signal, time => {
             this.ticks++;
         });
         return {
             controller,
-            ticks: this.ticks++,
+            ticks: wait ? ticks : ticks + 1,
         }
     }
 
@@ -62,6 +62,7 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
             enabled: true,
             disabled: false,
             loop: false,
+            wait: false,
         },
         propInfo:{
             enabled:{

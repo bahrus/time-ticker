@@ -12,7 +12,11 @@ export interface TimeTickerProps {
     enabled: boolean,
     disabled: boolean,
     loop: boolean,
-    ticks: 0,
+    ticks: number,
+    /**
+     * Wait for the duration before firing the first tick.
+     */
+    wait: boolean,
     controller: AbortController,
 }
 
