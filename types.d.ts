@@ -3,6 +3,35 @@ export interface IValue{
     item: any,
 }
 
+/**
+ * time-ticker props
+ * ```Javascript
+ *         propDefaults: {
+            ticks: 0,
+            idx: -1,
+            duration: 1_000,
+            repeat: Infinity,
+            enabled: true,
+            disabled: false,
+            loop: false,
+            wait: false,
+        },
+        propInfo:{
+            enabled:{
+                dry: false,
+                notify: {
+                    toggleTo: 'disabled',
+                }
+            },
+            value: {
+                notify: {
+                    dispatch: true,
+                },
+                parse: false,
+            },
+        },
+ * ```
+ */
 export interface TimeTickerProps {
     items: any[],
     value: any,
