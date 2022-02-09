@@ -92,8 +92,12 @@ export interface TimeTickerActions {
 
 export interface SimpleWCInfo{
     tagName: string;
+    cssParts: {[key: string]: string};
 }
 
 export abstract class TimeTickerInfo implements SimpleWCInfo{
     tagName: 'time-ticker';
+    cssParts: {
+        editor: 'Expander button',
+    }
 }
