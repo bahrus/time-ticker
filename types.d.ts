@@ -60,32 +60,40 @@ export interface TimeTickerActions {
     }
 }
 
-/**
- * time-ticker manifest
- */
-export interface TimeTickerInfo {
-    tagName: 'time-ticker',
-    props: TimeTickerProps,
-    methods: TimeTickerActions,
-    cssProps: {
-        /**
-         * description of text-color
-         */
-        textColor: 'red',
-        objKeyBg: 'rgb(255, 0, 0)',
-    },
-    cssParts: {
-        editor: 'Expander button',
+// /**
+//  * time-ticker manifest
+//  */
+// export interface TimeTickerInfo {
+//     tagName: 'time-ticker',
+//     props: TimeTickerProps,
+//     methods: TimeTickerActions,
+//     cssProps: {
+//         /**
+//          * description of text-color
+//          */
+//         textColor: 'red',
+//         objKeyBg: 'rgb(255, 0, 0)',
+//     },
+//     cssParts: {
+//         editor: 'Expander button',
 
-    },
-    events: {
-        /**
-         * Fired after successfully parsing the object.
-         */
-        parsedObjectChanged: {
-            value: {
-                idx: number,
-            }
-        },
-    }
+//     },
+//     events: {
+//         /**
+//          * Fired after successfully parsing the object.
+//          */
+//         parsedObjectChanged: {
+//             value: {
+//                 idx: number,
+//             }
+//         },
+//     }
+// }
+
+export interface SimpleWCInfo{
+    tagName: string;
+}
+
+export abstract class TimeTickerInfo implements SimpleWCInfo{
+    tagName: 'time-ticker';
 }
