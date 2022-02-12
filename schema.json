@@ -1,0 +1,118 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "definitions": {
+        "AbortController": {
+            "properties": {
+                "signal": {
+                    "$ref": "#/definitions/AbortSignal"
+                }
+            },
+            "type": "object"
+        },
+        "AbortSignal": {
+            "properties": {
+                "aborted": {
+                    "type": "boolean"
+                },
+                "onabort": {
+                    "type": "object"
+                }
+            },
+            "type": "object"
+        },
+        "IValue": {
+            "properties": {
+                "idx": {
+                    "type": "number"
+                },
+                "item": {}
+            },
+            "type": "object"
+        },
+        "SimpleWCInfo": {
+            "properties": {
+                "cssParts": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "cssProps": {
+                    "additionalProperties": {
+                        "type": "string"
+                    },
+                    "type": "object"
+                },
+                "methods": {},
+                "props": {},
+                "tagName": {
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TimeTickerActions": {
+            "description": "time-ticker actions",
+            "type": "object"
+        },
+        "TimeTickerInfo": {
+            "properties": {
+                "methods": {
+                    "$ref": "#/definitions/TimeTickerActions"
+                },
+                "props": {
+                    "$ref": "#/definitions/TimeTickerProps"
+                },
+                "tagName": {
+                    "enum": [
+                        "time-ticker"
+                    ],
+                    "type": "string"
+                }
+            },
+            "type": "object"
+        },
+        "TimeTickerProps": {
+            "description": "time-ticker props",
+            "properties": {
+                "controller": {
+                    "$ref": "#/definitions/AbortController"
+                },
+                "disabled": {
+                    "type": "boolean"
+                },
+                "duration": {
+                    "type": "number"
+                },
+                "enabled": {
+                    "description": "```JavaScript\n{\n     default: true,\n     dry: false,\n     notify: {\n        toggleTo: 'disabled',\n    }\n}",
+                    "type": "boolean"
+                },
+                "idx": {
+                    "description": "```JavaScript\n{\n default: -1,\n}",
+                    "type": "number"
+                },
+                "items": {
+                    "items": {},
+                    "type": "array"
+                },
+                "loop": {
+                    "type": "boolean"
+                },
+                "repeat": {
+                    "type": "number"
+                },
+                "ticks": {
+                    "type": "number"
+                },
+                "value": {},
+                "wait": {
+                    "description": "Wait for the duration before firing the first tick.",
+                    "type": "boolean"
+                }
+            },
+            "type": "object"
+        }
+    }
+}
+

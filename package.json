@@ -10,11 +10,14 @@
   },
   "devDependencies": {
     "xtal-test": "0.0.55",
-    "on-to-me": "0.0.49"
+    "on-to-me": "0.0.49",
+    "custom-elements-manifest": "1.0.0",
+    "typescript-json-schema": "0.53.0"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node node_modules/xtal-test/serve.js",
+    "build-schema": "node node_modules/typescript-json-schema/bin/typescript-json-schema types.d.ts * > schema.json",
     "doc": "wca analyze time-ticker.js --outFile custom-elements.json"
   },
   "repository": {

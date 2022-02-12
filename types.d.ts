@@ -74,9 +74,6 @@ export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
 
 export abstract class TimeTickerInfo implements SimpleWCInfo{
     tagName: 'time-ticker';
-    cssParts: {
-        editor: 'Expander button',
-    };
     props: TimeTickerProps;
-    
+    methods: TimeTickerActions;
 }

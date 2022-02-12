@@ -9,7 +9,8 @@
 		"watch": true
 	},
 	"files": [
-		"time-ticker.ts"
+		"time-ticker.ts",
+		"doc.ts"
 	]
 
 }
