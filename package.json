@@ -1,6 +1,6 @@
 {
   "name": "time-ticker",
-  "version": "0.0.16",
+  "version": "0.0.17",
   "description": "Web Component that fires event periodically",
   "main": "time-ticker.js",
   "module": "time-ticker.js",
@@ -16,7 +16,7 @@
     "may-it-be": "0.0.128",
     "npm-watch": "0.11.0"
   },
-  "watch":{
+  "watch": {
     "build-schema": "types.d.ts",
     "build-manifest": "schema.json"
   },
