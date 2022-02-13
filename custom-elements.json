@@ -4,7 +4,7 @@
   "modules": [
     {
       "kind": "javascript-module",
-      "path": "",
+      "path": "./time-ticker.js",
       "declarations": [
         {
           "tagName": "time-ticker",
@@ -76,6 +76,44 @@
               "kind": "method",
               "name": "stop",
               "description": "Stop the timer"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "controller"
+            },
+            {
+              "name": "disabled"
+            },
+            {
+              "name": "duration"
+            },
+            {
+              "name": "enabled",
+              "description": "```JavaScript\n{\n     default: true,\n     dry: false,\n     notify: {\n        toggleTo: 'disabled',\n    }\n}"
+            },
+            {
+              "name": "idx",
+              "description": "```JavaScript\n{\n default: -1,\n}"
+            },
+            {
+              "name": "items"
+            },
+            {
+              "name": "loop"
+            },
+            {
+              "name": "repeat"
+            },
+            {
+              "name": "ticks"
+            },
+            {
+              "name": "value"
+            },
+            {
+              "name": "wait",
+              "description": "Wait for the duration before firing the first tick."
             }
           ]
         }
