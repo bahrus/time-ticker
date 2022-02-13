@@ -58,7 +58,7 @@ export interface TimeTickerActions {
         controller: AbortController | undefined,
     },
     /**
-     * Set rotatino items
+     * Set rotating items
      */
     rotateItems: (self: this) => {
         repeat: number,
@@ -70,20 +70,18 @@ export interface TimeTickerActions {
     },
 }
 
-
-
-
-
 export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
     tagName: string;
     cssParts?: {[key: string]: string};
     props?: any;
     methods?: any;
     cssProps?: {[key: string]: string};
+    nonAttribProps: string[];
 }
 
-export abstract class TimeTickerInfo implements SimpleWCInfo{
+export abstract class TimeTickerInfo implements SimpleWCInfo<TimeTickerProps>{
     tagName: 'time-ticker';
     props: TimeTickerProps;
     methods: TimeTickerActions;
+    nonAttribProps: ['value'];
 }

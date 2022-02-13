@@ -65,7 +65,7 @@
             {
               "kind": "method",
               "name": "rotateItems",
-              "description": "Set rotatino items"
+              "description": "Set rotating items"
             },
             {
               "kind": "method",

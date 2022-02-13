@@ -44,6 +44,12 @@
                     "type": "object"
                 },
                 "methods": {},
+                "nonAttribProps": {
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": "array"
+                },
                 "props": {},
                 "tagName": {
                     "type": "string"
@@ -58,7 +64,7 @@
                     "type": "object"
                 },
                 "rotateItems": {
-                    "description": "Set rotatino items",
+                    "description": "Set rotating items",
                     "type": "object"
                 },
                 "start": {
@@ -76,6 +82,19 @@
             "properties": {
                 "methods": {
                     "$ref": "#/definitions/TimeTickerActions"
+                },
+                "nonAttribProps": {
+                    "items": [
+                        {
+                            "enum": [
+                                "value"
+                            ],
+                            "type": "string"
+                        }
+                    ],
+                    "maxItems": 1,
+                    "minItems": 1,
+                    "type": "array"
                 },
                 "props": {
                     "$ref": "#/definitions/TimeTickerProps"
