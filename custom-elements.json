@@ -1,102 +1,85 @@
 {
-  "version": 2,
-  "tags": [
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
     {
-      "name": "time-ticker",
-      "jsDoc": "/**\n * @element time-ticker\n * @event tick - Dipatched every time timer goes off\n */",
-      "attributes": [
+      "kind": "javascript-module",
+      "path": "",
+      "declarations": [
         {
-          "name": "items",
-          "description": "Items to rotate through.\nSets property repeat to the number of items (length)\nAttribute support (must be in JSON format)",
-          "jsDoc": "/**\n     * Items to rotate through.\n     * Sets property repeat to the number of items (length)\n     * Attribute support (must be in JSON format)\n     * @attr\n     */",
-          "type": "any"
-        },
-        {
-          "name": "duration",
-          "description": "Number of millisecods to wait",
-          "jsDoc": "/**\n     * Number of millisecods to wait\n     * @attr\n     */",
-          "type": "number"
-        },
-        {
-          "name": "loop",
-          "description": "Indicates whether should cycle or stop",
-          "jsDoc": "/**\n     * Indicates whether should cycle or stop\n     * @attr\n     */",
-          "type": "any"
-        },
-        {
-          "name": "wait",
-          "description": "Disable after every tick",
-          "jsDoc": "/**\n     * Disable after every tick\n     * @attr\n    */",
-          "type": "any"
+          "tagName": "time-ticker",
+          "name": "TimeTickerInfo",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "controller"
+            },
+            {
+              "kind": "field",
+              "name": "disabled"
+            },
+            {
+              "kind": "field",
+              "name": "duration"
+            },
+            {
+              "kind": "field",
+              "name": "enabled",
+              "description": "```JavaScript\n{\n     default: true,\n     dry: false,\n     notify: {\n        toggleTo: 'disabled',\n    }\n}"
+            },
+            {
+              "kind": "field",
+              "name": "idx",
+              "description": "```JavaScript\n{\n default: -1,\n}"
+            },
+            {
+              "kind": "field",
+              "name": "items"
+            },
+            {
+              "kind": "field",
+              "name": "loop"
+            },
+            {
+              "kind": "field",
+              "name": "repeat"
+            },
+            {
+              "kind": "field",
+              "name": "ticks"
+            },
+            {
+              "kind": "field",
+              "name": "value"
+            },
+            {
+              "kind": "field",
+              "name": "wait",
+              "description": "Wait for the duration before firing the first tick."
+            },
+            {
+              "kind": "method",
+              "name": "onTicks"
+            },
+            {
+              "kind": "method",
+              "name": "rotateItems",
+              "description": "Set rotatino items"
+            },
+            {
+              "kind": "method",
+              "name": "start",
+              "description": "Starts the timer"
+            },
+            {
+              "kind": "method",
+              "name": "stop",
+              "description": "Stop the timer"
+            }
+          ]
         }
-      ],
-      "properties": [
-        {
-          "name": "val",
-          "type": "\"set\" | \"remove\""
-        },
-        {
-          "name": "disabled",
-          "type": "boolean"
-        },
-        {
-          "name": "evCount",
-          "description": "Tracks how many times each event type was called.",
-          "jsDoc": "/**\r\n         * Tracks how many times each event type was called.\r\n         */",
-          "type": "{ [key: string]: number; }"
-        },
-        {
-          "name": "asIs",
-          "type": "\"\" | \"-changed\""
-        },
-        {
-          "name": "idx",
-          "description": "Current count",
-          "jsDoc": "/**\n     * Current count\n    */",
-          "type": "any"
-        },
-        {
-          "name": "enabled",
-          "description": "Remove disabled",
-          "jsDoc": "/**\n     * Remove disabled\n     */",
-          "type": "any"
-        },
-        {
-          "name": "items",
-          "description": "Items to rotate through.\nSets property repeat to the number of items (length)\nAttribute support (must be in JSON format)",
-          "jsDoc": "/**\n     * Items to rotate through.\n     * Sets property repeat to the number of items (length)\n     * Attribute support (must be in JSON format)\n     * @attr\n     */",
-          "type": "any"
-        },
-        {
-          "name": "duration",
-          "description": "Number of millisecods to wait",
-          "jsDoc": "/**\n     * Number of millisecods to wait\n     * @attr\n     */",
-          "type": "number"
-        },
-        {
-          "name": "repeat",
-          "type": "number"
-        },
-        {
-          "name": "loop",
-          "description": "Indicates whether should cycle or stop",
-          "jsDoc": "/**\n     * Indicates whether should cycle or stop\n     * @attr\n     */",
-          "type": "any"
-        },
-        {
-          "name": "wait",
-          "description": "Disable after every tick",
-          "jsDoc": "/**\n     * Disable after every tick\n     * @attr\n    */",
-          "type": "any"
-        }
-      ],
-      "events": [
-        {
-          "name": "tick",
-          "description": "Dipatched every time timer goes off"
-        }
-      ],
-      "slots": []
+      ]
     }
   ]
 }

@@ -54,17 +54,19 @@
         "TimeTickerActions": {
             "description": "time-ticker actions",
             "properties": {
-                "onDisabled": {
-                    "type": "object"
-                },
-                "onItems": {
-                    "type": "object"
-                },
                 "onTicks": {
+                    "type": "object"
+                },
+                "rotateItems": {
+                    "description": "Set rotatino items",
                     "type": "object"
                 },
                 "start": {
                     "description": "Starts the timer",
+                    "type": "object"
+                },
+                "stop": {
+                    "description": "Stop the timer",
                     "type": "object"
                 }
             },
