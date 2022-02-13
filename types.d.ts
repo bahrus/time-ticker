@@ -8,35 +8,49 @@ export interface IValue{
  * 
  */
 export interface TimeTickerProps {
-    items: any[],
-    value: any,
     /**
-     * ```JavaScript
-     * {
-     *  default: -1,
-     * }
+     * Items to rotate through and broadcast
+     */
+    items: any[],
+    /**
+     * Currently selected idx value and selected item
+     */
+    value: IValue,
+    /**
+     * Current index of items (if applicable)
      */
     idx: number,
+    /**
+     * Milliseconds to wait between ticks
+     */
     duration: number,
+    /**
+     * Upper bound for idx before being reset to 0
+     */
     repeat: number,
     /**
-     * ```JavaScript
-     * {
-     *      default: true,
-     *      dry: false,
-     *      notify: {
-     *         toggleTo: 'disabled',
-     *     }
-     * }
+     * Start the time ticker.  Toggles disabled state
      */
     enabled: boolean,
+    /**
+     * Stop the time ticker. 
+     */
     disabled: boolean,
+    /**
+     * Loop the time ticker.
+     */
     loop: boolean,
+    /**
+     * Number of ticks encountered regardless of any looping / repeating.
+     */
     ticks: number,
     /**
      * Wait for the duration before firing the first tick.
      */
     wait: boolean,
+    /**
+     * Abort controller for the time ticker
+     */
     controller: AbortController,
 }
 
@@ -63,6 +77,9 @@ export interface TimeTickerActions {
     rotateItems: (self: this) => {
         repeat: number,
     },
+    /**
+     * React to an uptick.
+     */
     onTicks: (self: this) => {
         idx?: number | undefined,
         disabled?: boolean,

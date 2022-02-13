@@ -61,6 +61,7 @@
             "description": "time-ticker actions",
             "properties": {
                 "onTicks": {
+                    "description": "React to an uptick.",
                     "type": "object"
                 },
                 "rotateItems": {
@@ -118,36 +119,46 @@
             "description": "time-ticker props",
             "properties": {
                 "controller": {
-                    "$ref": "#/definitions/AbortController"
+                    "$ref": "#/definitions/AbortController",
+                    "description": "Abort controller for the time ticker"
                 },
                 "disabled": {
+                    "description": "Stop the time ticker.",
                     "type": "boolean"
                 },
                 "duration": {
+                    "description": "Milliseconds to wait between ticks",
                     "type": "number"
                 },
                 "enabled": {
-                    "description": "```JavaScript\n{\n     default: true,\n     dry: false,\n     notify: {\n        toggleTo: 'disabled',\n    }\n}",
+                    "description": "Start the time ticker.  Toggles disabled state",
                     "type": "boolean"
                 },
                 "idx": {
-                    "description": "```JavaScript\n{\n default: -1,\n}",
+                    "description": "Current index of items (if applicable)",
                     "type": "number"
                 },
                 "items": {
+                    "description": "Items to rotate through and broadcast",
                     "items": {},
                     "type": "array"
                 },
                 "loop": {
+                    "description": "Loop the time ticker.",
                     "type": "boolean"
                 },
                 "repeat": {
+                    "description": "Upper bound for idx before being reset to 0",
                     "type": "number"
                 },
                 "ticks": {
+                    "description": "Number of ticks encountered regardless of any looping / repeating.",
                     "type": "number"
                 },
-                "value": {},
+                "value": {
+                    "$ref": "#/definitions/IValue",
+                    "description": "Currently selected idx value and selected item"
+                },
                 "wait": {
                     "description": "Wait for the duration before firing the first tick.",
                     "type": "boolean"

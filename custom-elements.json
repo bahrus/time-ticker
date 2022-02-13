@@ -13,45 +13,53 @@
           "members": [
             {
               "kind": "field",
-              "name": "controller"
+              "name": "controller",
+              "description": "Abort controller for the time ticker"
             },
             {
               "kind": "field",
-              "name": "disabled"
+              "name": "disabled",
+              "description": "Stop the time ticker."
             },
             {
               "kind": "field",
-              "name": "duration"
+              "name": "duration",
+              "description": "Milliseconds to wait between ticks"
             },
             {
               "kind": "field",
               "name": "enabled",
-              "description": "```JavaScript\n{\n     default: true,\n     dry: false,\n     notify: {\n        toggleTo: 'disabled',\n    }\n}"
+              "description": "Start the time ticker.  Toggles disabled state"
             },
             {
               "kind": "field",
               "name": "idx",
-              "description": "```JavaScript\n{\n default: -1,\n}"
+              "description": "Current index of items (if applicable)"
             },
             {
               "kind": "field",
-              "name": "items"
+              "name": "items",
+              "description": "Items to rotate through and broadcast"
             },
             {
               "kind": "field",
-              "name": "loop"
+              "name": "loop",
+              "description": "Loop the time ticker."
             },
             {
               "kind": "field",
-              "name": "repeat"
+              "name": "repeat",
+              "description": "Upper bound for idx before being reset to 0"
             },
             {
               "kind": "field",
-              "name": "ticks"
+              "name": "ticks",
+              "description": "Number of ticks encountered regardless of any looping / repeating."
             },
             {
               "kind": "field",
-              "name": "value"
+              "name": "value",
+              "description": "Currently selected idx value and selected item"
             },
             {
               "kind": "field",
@@ -60,7 +68,8 @@
             },
             {
               "kind": "method",
-              "name": "onTicks"
+              "name": "onTicks",
+              "description": "React to an uptick."
             },
             {
               "kind": "method",
@@ -80,36 +89,44 @@
           ],
           "attributes": [
             {
-              "name": "controller"
+              "name": "controller",
+              "description": "Abort controller for the time ticker"
             },
             {
-              "name": "disabled"
+              "name": "disabled",
+              "description": "Stop the time ticker."
             },
             {
-              "name": "duration"
+              "name": "duration",
+              "description": "Milliseconds to wait between ticks"
             },
             {
               "name": "enabled",
-              "description": "```JavaScript\n{\n     default: true,\n     dry: false,\n     notify: {\n        toggleTo: 'disabled',\n    }\n}"
+              "description": "Start the time ticker.  Toggles disabled state"
             },
             {
               "name": "idx",
-              "description": "```JavaScript\n{\n default: -1,\n}"
+              "description": "Current index of items (if applicable)"
             },
             {
-              "name": "items"
+              "name": "items",
+              "description": "Items to rotate through and broadcast"
             },
             {
-              "name": "loop"
+              "name": "loop",
+              "description": "Loop the time ticker."
             },
             {
-              "name": "repeat"
+              "name": "repeat",
+              "description": "Upper bound for idx before being reset to 0"
             },
             {
-              "name": "ticks"
+              "name": "ticks",
+              "description": "Number of ticks encountered regardless of any looping / repeating."
             },
             {
-              "name": "value"
+              "name": "value",
+              "description": "Currently selected idx value and selected item"
             },
             {
               "name": "wait",
