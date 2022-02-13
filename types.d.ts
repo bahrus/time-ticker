@@ -51,10 +51,16 @@ export interface TimeTickerActions {
     start: (self: this) => {
         controller: AbortController | undefined,
     },
-    onDisabled: (self: this) => {
+    /**
+     * Stop the timer
+     */
+    stop: (self: this) => {
         controller: AbortController | undefined,
     },
-    onItems: (self: this) => {
+    /**
+     * Set rotatino items
+     */
+    rotateItems: (self: this) => {
         repeat: number,
     },
     onTicks: (self: this) => {

@@ -16,14 +16,14 @@ export class TimeTicker extends HTMLElement implements TimeTickerActions{
         }
     }
 
-    onDisabled({controller}: this) {
+    stop({controller}: this) {
         controller.abort();
         return {
             controller: undefined,
         }
     }
 
-    onItems({items}: this){
+    rotateItems({items}: this){
         return {
             repeat: items.length,
         }
@@ -72,6 +72,9 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
                     toggleTo: 'disabled',
                 }
             },
+            repeat: {
+                dry: false,
+            },
             value: {
                 notify: {
                     dispatch: true,
@@ -83,17 +86,17 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
             display: 'none',
         },
         actions: {
-            onDisabled:{
+            stop:{
                 ifAllOf: ['disabled', 'controller']
             },
-            onItems:'items',
+            rotateItems:'items',
             start:{
                 ifAllOf: ['duration'],
                 ifNoneOf: ['disabled'],
             },
             onTicks: {
                 ifAllOf: ['ticks'],
-                ifKeyIn: ['repeat', 'loop', 'items'],
+                ifKeyIn: ['repeat', 'loop'],
                 ifNoneOf: ['disabled'],
             }
         }
