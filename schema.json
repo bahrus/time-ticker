@@ -91,10 +91,16 @@
                                 "value"
                             ],
                             "type": "string"
+                        },
+                        {
+                            "enum": [
+                                "controller"
+                            ],
+                            "type": "string"
                         }
                     ],
-                    "maxItems": 1,
-                    "minItems": 1,
+                    "maxItems": 2,
+                    "minItems": 2,
                     "type": "array"
                 },
                 "props": {

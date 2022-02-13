@@ -101,6 +101,6 @@ export abstract class TimeTickerInfo implements SimpleWCInfo<TimeTickerProps>{
     tagName: 'time-ticker';
     props: TimeTickerProps;
     methods: TimeTickerActions;
-    nonAttribProps: ['value'];
+    nonAttribProps: ['value', 'controller'];
     
 }
