@@ -53,6 +53,21 @@
         },
         "TimeTickerActions": {
             "description": "time-ticker actions",
+            "properties": {
+                "onDisabled": {
+                    "type": "object"
+                },
+                "onItems": {
+                    "type": "object"
+                },
+                "onTicks": {
+                    "type": "object"
+                },
+                "start": {
+                    "description": "Starts the timer",
+                    "type": "object"
+                }
+            },
             "type": "object"
         },
         "TimeTickerInfo": {

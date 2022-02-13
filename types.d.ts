@@ -44,20 +44,24 @@ export interface TimeTickerProps {
  * time-ticker actions
  */
 export interface TimeTickerActions {
-    start(self: this): {
+    /**
+     * 
+     * Starts the timer
+     */
+    start: (self: this) => {
         controller: AbortController | undefined,
     },
-    onDisabled(self: this): {
+    onDisabled: (self: this) => {
         controller: AbortController | undefined,
-    }
-    onItems(self: this): {
+    },
+    onItems: (self: this) => {
         repeat: number,
-    }
-    onTicks(self: this): {
+    },
+    onTicks: (self: this) => {
         idx?: number | undefined,
         disabled?: boolean,
         value?: IValue,
-    }
+    },
 }
 
 
