@@ -1,0 +1,140 @@
+{
+  "schemaVersion": "1.0.0",
+  "readme": "",
+  "modules": [
+    {
+      "kind": "javascript-module",
+      "path": "./time-ticker.js",
+      "declarations": [
+        {
+          "tagName": "time-ticker",
+          "name": "TimeTickerInfo",
+          "customElement": true,
+          "members": [
+            {
+              "kind": "field",
+              "name": "controller",
+              "description": "Abort controller for the time ticker"
+            },
+            {
+              "kind": "field",
+              "name": "disabled",
+              "description": "Stop the time ticker."
+            },
+            {
+              "kind": "field",
+              "name": "duration",
+              "description": "Milliseconds to wait between ticks"
+            },
+            {
+              "kind": "field",
+              "name": "enabled",
+              "description": "Start the time ticker.  Toggles disabled state"
+            },
+            {
+              "kind": "field",
+              "name": "idx",
+              "description": "Current index of items (if applicable)"
+            },
+            {
+              "kind": "field",
+              "name": "items",
+              "description": "Items to rotate through and broadcast"
+            },
+            {
+              "kind": "field",
+              "name": "loop",
+              "description": "Loop the time ticker."
+            },
+            {
+              "kind": "field",
+              "name": "repeat",
+              "description": "Upper bound for idx before being reset to 0"
+            },
+            {
+              "kind": "field",
+              "name": "ticks",
+              "description": "Number of ticks encountered regardless of any looping / repeating."
+            },
+            {
+              "kind": "field",
+              "name": "value",
+              "description": "Currently selected idx value and selected item"
+            },
+            {
+              "kind": "field",
+              "name": "wait",
+              "description": "Wait for the duration before firing the first tick."
+            },
+            {
+              "kind": "method",
+              "name": "onTicks",
+              "description": "React to an uptick."
+            },
+            {
+              "kind": "method",
+              "name": "rotateItems",
+              "description": "Set rotating items"
+            },
+            {
+              "kind": "method",
+              "name": "start",
+              "description": "Starts the timer"
+            },
+            {
+              "kind": "method",
+              "name": "stop",
+              "description": "Stop the timer"
+            }
+          ],
+          "attributes": [
+            {
+              "name": "controller",
+              "description": "Abort controller for the time ticker"
+            },
+            {
+              "name": "disabled",
+              "description": "Stop the time ticker."
+            },
+            {
+              "name": "duration",
+              "description": "Milliseconds to wait between ticks"
+            },
+            {
+              "name": "enabled",
+              "description": "Start the time ticker.  Toggles disabled state"
+            },
+            {
+              "name": "idx",
+              "description": "Current index of items (if applicable)"
+            },
+            {
+              "name": "items",
+              "description": "Items to rotate through and broadcast"
+            },
+            {
+              "name": "loop",
+              "description": "Loop the time ticker."
+            },
+            {
+              "name": "repeat",
+              "description": "Upper bound for idx before being reset to 0"
+            },
+            {
+              "name": "ticks",
+              "description": "Number of ticks encountered regardless of any looping / repeating."
+            },
+            {
+              "name": "value",
+              "description": "Currently selected idx value and selected item"
+            },
+            {
+              "name": "wait",
+              "description": "Wait for the duration before firing the first tick."
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
