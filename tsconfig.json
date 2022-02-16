@@ -10,7 +10,8 @@
 	},
 	"files": [
 		"time-ticker.ts",
-		"doc.mts"
+		"doc.mts",
+		"tt-config.mts"
 	]
 
 }

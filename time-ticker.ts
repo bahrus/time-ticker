@@ -93,7 +93,6 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
             start:{
                 ifAllOf: ['duration'],
                 ifNoneOf: ['disabled'],
-                async: true,
             },
             onTicks: {
                 ifAllOf: ['ticks'],
