@@ -53,7 +53,7 @@ export class TimeTicker extends HTMLElement implements TimeTickerActions{
 export interface TimeTicker extends TimeTickerProps{}
 
 const xe = new XE<TimeTickerProps, TimeTickerActions>({
-    config: (async () => import('./tt-config.json', {assert: {type: 'json'}})),
+    config: () => import('./tt-config.json', {assert: {type: 'json'}}),
     superclass: TimeTicker,
 });
 

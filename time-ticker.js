@@ -45,6 +45,6 @@ export class TimeTicker extends HTMLElement {
     }
 }
 const xe = new XE({
-    config: (async () => import('./tt-config.json', { assert: { type: 'json' } })),
+    config: () => import('./tt-config.json', { assert: { type: 'json' } }),
     superclass: TimeTicker,
 });

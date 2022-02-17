@@ -24,57 +24,12 @@ Uses this [library](https://gist.github.com/jakearchibald/cb03f15670817001b1157e
 
 [Demo](https://jsfiddle.net/bahrus/w4527xk0/1/)
 
-<!--
+time-ticker uses JSON modules, which seem to be wending their way, ever so slowly, into Firefox and Safari.
+
+In the meantime, use the polyfill to accommodate non chromium browsers:
+
+```html
+    <script type="esms-options">{ "polyfillEnable": ["json-modules"] }</script>
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.4.6/dist/es-module-shims.js"></script>
 ```
-<custom-element-demo>
-  <template>
-  <div class=body>
-    <on-to-me on=text-setting-complete to=[-enabled] val=target.text></on-to-me>
-    <time-ticker disabled loop -enabled duration=4000>
-        <script nomodule=ish>
-            selfish.parentElement.items = [
-                'Neo,',
-                'sooner or later',
-                'you\'re going to realize',
-                'just as I did',
-                'that there\'s a difference',
-                'between knowing the path',
-                'and walking the path'
-            ]
-        </script>
-    </time-ticker>
-    <on-to-me on=tick to=[-text] me=1 val=target.value.item></on-to-me>
-    <co-depends-text-scramble -text class="text"></co-depends-text-scramble>
-    <style>
-        @import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
-        html,  
-        div.body {
-        font-family: 'Roboto Mono', monospace;
-        background: #212121;
-        height: 100%;
-        }
-        .container {
-            height: 100%;
-            width: 100%;
-            justify-content: center;
-            align-items: center;
-            display: flex;
-        }
-        .text {
-            font-weight: 100;
-            font-size: 28px;
-            color: #fafafa;
-        }
-        .dud {
-            color: #757575;
-        }
-    </style>
-    <script type=module src=https://unpkg.com/nomodule@0.0.10/no-module.js?module></script>
-    <script type=module src=https://unpkg.com/on-to-me@0.0.7/dist/on-to-me.min.js></script>
-    <script type=module src=https://unpkg.com/time-ticker@0.0.12/time-ticker.js?module></script>
-    <script type="module" src="https://cdn.jsdelivr.net/npm/co-depends@0.0.4/text-scramble/dist/text-scramble.iife.min.js"></script>
-    </div>
-  </template>
-</custom-element-demo>
-```
--->
+
