@@ -5,8 +5,8 @@
   "main": "time-ticker.js",
   "module": "time-ticker.js",
   "dependencies": {
-    "xtal-element": "0.0.471",
-    "trans-render": "0.0.472"
+    "xtal-element": "0.0.473",
+    "trans-render": "0.0.480"
   },
   "devDependencies": {
     "xtal-test": "0.0.55",
@@ -17,13 +17,15 @@
   },
   "watch": {
     "build-schema": "types.d.ts",
-    "build-manifest": "schema.json"
+    "build-manifest": "schema.json",
+    "build-config": "tt-config.mjs"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "serve": "node node_modules/xtal-test/serve.js",
     "build-schema": "node node_modules/typescript-json-schema/bin/typescript-json-schema types.d.ts * > schema.json",
     "build-manifest": "node doc.mjs > custom-elements.json",
+    "build-config": "node tt-config.mjs > tt-config.json",
     "watch": "npm-watch"
   },
   "repository": {
