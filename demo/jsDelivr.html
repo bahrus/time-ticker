@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <time-ticker disabled loop duration=4000 items='[
+        "Neo,",
+        "sooner or later",
+        "you`re going to realize",
+        "just as I did",
+        "that there`s a difference",
+        "between knowing the path",
+        "and walking the path"
+    ]'>
+    </time-ticker>
+    <on-to-me on=value-changed to=[-text] me=1 vft=value.item val=target.value.item></on-to-me>
+    <co-depends-text-scramble -text class="text"></co-depends-text-scramble>
+    <style>
+        @import 'https://fonts.googleapis.com/css?family=Roboto+Mono:100';
+        html,  
+        div.body {
+        font-family: 'Roboto Mono', monospace;
+        background: #212121;
+        height: 100%;
+        }
+        .container {
+            height: 100%;
+            width: 100%;
+            justify-content: center;
+            align-items: center;
+            display: flex;
+        }
+        .text {
+            font-weight: 100;
+            font-size: 28px;
+            color: #fafafa;
+        }
+        .dud {
+            color: #757575;
+        }
+    </style>
+    <script type="esms-options">{ "polyfillEnable": ["json-modules"] }</script>
+    <script async src="https://ga.jspm.io/npm:es-module-shims@1.4.6/dist/es-module-shims.js"></script>
+    
+    <script  type=module>
+        import 'https://esm.run/time-ticker@0.0.20/time-ticker.js';
+        import 'https://esm.run/on-to-me@0.0.49/on-to-me.js';
+    </script>
+    <script type=module src="https://cdn.jsdelivr.net/npm/co-depends@0.0.4/text-scramble/dist/text-scramble.iife.min.js"></script>
+</body>
+
+</html>
