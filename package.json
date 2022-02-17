@@ -1,6 +1,6 @@
 {
   "name": "time-ticker",
-  "version": "0.0.20",
+  "version": "0.0.21",
   "description": "Web Component that fires event periodically",
   "main": "time-ticker.js",
   "module": "time-ticker.js",
