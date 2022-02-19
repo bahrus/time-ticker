@@ -89,15 +89,6 @@ export interface TimeTickerActions {
     },
 }
 
-// export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
-//     tagName: string;
-//     cssParts?: {[key: string]: string};
-//     props?: any;
-//     methods?: any;
-//     cssProps?: {[key: string]: string};
-//     nonAttribProps: string[];
-// }
-
 export abstract class TimeTickerInfo implements SimpleWCInfo<TimeTickerProps>{
     src: './time-ticker.js';
     tagName: 'time-ticker';
