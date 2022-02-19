@@ -1,3 +1,5 @@
+import {SimpleWCInfo} from 'may-it-be/types';
+
 export interface IValue{
     idx: number,
     item: any,
@@ -87,14 +89,14 @@ export interface TimeTickerActions {
     },
 }
 
-export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
-    tagName: string;
-    cssParts?: {[key: string]: string};
-    props?: any;
-    methods?: any;
-    cssProps?: {[key: string]: string};
-    nonAttribProps: string[];
-}
+// export interface SimpleWCInfo<TProps = any, TPublicMethods = any>{
+//     tagName: string;
+//     cssParts?: {[key: string]: string};
+//     props?: any;
+//     methods?: any;
+//     cssProps?: {[key: string]: string};
+//     nonAttribProps: string[];
+// }
 
 export abstract class TimeTickerInfo implements SimpleWCInfo<TimeTickerProps>{
     src: './time-ticker.js';
