@@ -1,4 +1,4 @@
-import {SimpleWCInfo} from 'may-it-be/types';
+import {SimpleWCInfo} from 'may-it-be/SimpleWCInfo';
 
 export interface IValue{
     idx: number,
@@ -97,3 +97,5 @@ export abstract class TimeTickerInfo implements SimpleWCInfo<TimeTickerProps>{
     nonAttribProps: ['value', 'controller'];
     
 }
+
+export type Package = [TimeTickerInfo];

@@ -11,7 +11,8 @@
 	"files": [
 		"time-ticker.ts",
 		"doc.mts",
-		"tt-config.mts"
+		"tt-config.mts",
+		"trial.mts"
 	]
 
 }
