@@ -5,11 +5,11 @@
   "main": "time-ticker.js",
   "module": "time-ticker.js",
   "dependencies": {
-    "xtal-element": "0.0.475",
-    "trans-render": "0.0.481"
+    "xtal-element": "0.0.493",
+    "trans-render": "0.0.538"
   },
   "devDependencies": {
-    "xtal-test": "0.0.55",
+    "may-it-serve": "0.0.1",
     "on-to-me": "0.0.49",
     "custom-elements-manifest": "1.0.0",
     "may-it-be": "0.0.139",
@@ -21,7 +21,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "serve": "node node_modules/xtal-test/serve.js",
+    "serve": "node node_modules/may-it-serve/serve.js",
     "build-manifest": "node doc.mjs > custom-elements.json",
     "build-config": "node tt-config.mjs > tt-config.json",
     "watch": "npm-watch"
