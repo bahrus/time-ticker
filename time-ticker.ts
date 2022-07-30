@@ -8,7 +8,6 @@ export class TimeTicker extends HTMLElement implements TimeTickerActions{
         const {animationInterval} = await import('./animationInterval.js');
         animationInterval(duration, controller.signal, time => {
             this.ticks++;
-            this.wait
         });
         return {
             controller,
