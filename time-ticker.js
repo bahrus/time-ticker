@@ -5,7 +5,6 @@ export class TimeTicker extends HTMLElement {
         const { animationInterval } = await import('./animationInterval.js');
         animationInterval(duration, controller.signal, time => {
             this.ticks++;
-            this.wait;
         });
         return {
             controller,
@@ -16,11 +15,6 @@ export class TimeTicker extends HTMLElement {
         controller.abort();
         return {
             controller: undefined,
-        };
-    }
-    rotateItems({ items }) {
-        return {
-            repeat: items.length,
         };
     }
     onTicks({ idx, repeat, loop, items }) {
@@ -73,6 +67,11 @@ const xe = new XE({
                 },
                 parse: false,
             },
+            items: {
+                notify: {
+                    lengthTo: 'repeat'
+                }
+            }
         },
         style: {
             display: 'none',
@@ -81,7 +80,6 @@ const xe = new XE({
             stop: {
                 ifAllOf: ['disabled', 'controller']
             },
-            rotateItems: 'items',
             start: {
                 ifAllOf: ['duration'],
                 ifNoneOf: ['disabled'],
