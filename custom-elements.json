@@ -78,11 +78,6 @@
             },
             {
               "kind": "method",
-              "name": "rotateItems",
-              "description": "Set rotating items"
-            },
-            {
-              "kind": "method",
               "name": "onTicks",
               "description": "React to an uptick."
             }

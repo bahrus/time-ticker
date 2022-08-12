@@ -74,12 +74,6 @@ export interface TimeTickerActions {
         controller: AbortController | undefined,
     },
     /**
-     * Set rotating items
-     */
-    rotateItems: (self: this) => {
-        repeat: number,
-    },
-    /**
      * React to an uptick.
      */
     onTicks: (self: this) => {
