@@ -24,18 +24,7 @@ export class TimeTicker extends HTMLElement implements TimeTickerActions{
 
 
     onTicks({idx, repeat, loop, items}: this){
-        if(idx >= repeat - 1){
-            if(loop){
-                idx = -1;
-            }else{
-                return {
-                    disabled: true,
-                };
-            }
-        }
-        idx++;
         return {
-            idx,
             value: {
                 idx,
                 item: (items && items.length > idx) ? items[idx] : undefined,
@@ -79,6 +68,21 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
                 notify:{
                     lengthTo:'repeat'
                 }
+            },
+            ticks: {
+                notify: {
+                    incTo: {
+                        key: 'idx',
+                        lt: 'repeat',
+                        loop: 'loop',
+                        notifyWhenMax: {
+                            setTo: {
+                                key: 'disabled',
+                                val: true,
+                            },
+                        }
+                    }
+                }
             }
         },
         style: {
@@ -93,8 +97,7 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
                 ifNoneOf: ['disabled'],
             },
             onTicks: {
-                ifAllOf: ['ticks'],
-                ifKeyIn: ['repeat', 'loop'],
+                ifKeyIn: ['repeat', 'loop', 'idx'],
                 ifNoneOf: ['disabled'],
             }
         }

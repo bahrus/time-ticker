@@ -127,7 +127,10 @@
               "name": "controller",
               "description": "Abort controller for the time ticker"
             }
-          ]
+          ],
+          "cssParts": [],
+          "slots": [],
+          "events": []
         }
       ]
     }

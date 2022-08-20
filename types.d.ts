@@ -77,8 +77,6 @@ export interface TimeTickerActions {
      * React to an uptick.
      */
     onTicks: (self: this) => {
-        idx?: number | undefined,
-        disabled?: boolean,
         value?: IValue,
     },
 }
