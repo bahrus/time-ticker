@@ -1,13 +1,17 @@
 import { XE } from 'xtal-element/src/XE.js';
+import { animationInterval } from './animationInterval.js';
 export class TimeTicker extends HTMLElement {
-    async start({ duration, ticks, wait }) {
-        const controller = new AbortController();
-        const { animationInterval } = await import('./animationInterval.js');
-        animationInterval(duration, controller.signal, time => {
+    start({ duration, ticks, wait, controller }) {
+        if (controller !== undefined) {
+            ticks = 0;
+            controller.abort();
+        }
+        const newController = new AbortController();
+        animationInterval(duration, newController.signal, time => {
             this.ticks++;
         });
         return {
-            controller,
+            controller: newController,
             ticks: wait ? ticks : ticks + 1,
         };
     }
@@ -37,7 +41,7 @@ const xe = new XE({
             enabled: true,
             disabled: false,
             loop: false,
-            wait: false,
+            wait: true,
         },
         propInfo: {
             enabled: {

@@ -64,9 +64,10 @@ export interface TimeTickerActions {
      * 
      * Starts the timer
      */
-    start: (self: this) => Promise<{
+    start: (self: this) => {
         controller: AbortController | undefined,
-    }>,
+        ticks: number,
+    },
     /**
      * Stop the timer
      */
