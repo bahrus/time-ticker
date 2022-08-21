@@ -1,7 +1,7 @@
 import { XE } from 'xtal-element/src/XE.js';
 import { animationInterval } from './animationInterval.js';
 export class TimeTicker extends HTMLElement {
-    start({ duration, ticks, wait, controller }) {
+    async start({ duration, ticks, wait, controller }) {
         if (controller !== undefined) {
             ticks = 0;
             controller.abort();

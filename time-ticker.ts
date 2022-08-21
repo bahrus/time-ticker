@@ -4,7 +4,7 @@ import {animationInterval} from './animationInterval.js';
 
 export class TimeTicker extends HTMLElement implements TimeTickerActions{
 
-    start({duration, ticks, wait, controller}: this) {
+    async start({duration, ticks, wait, controller}: this) {
         if(controller !== undefined){
             ticks = 0;
             controller.abort();
