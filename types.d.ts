@@ -77,7 +77,7 @@ export interface TimeTickerActions {
     /**
      * React to an uptick.
      */
-    onTicks: (self: this) => {
+    rotateItem: (self: this) => {
         value?: IValue,
     },
 }

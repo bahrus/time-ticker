@@ -78,7 +78,7 @@
             },
             {
               "kind": "method",
-              "name": "onTicks",
+              "name": "rotateItem",
               "description": "React to an uptick."
             }
           ],

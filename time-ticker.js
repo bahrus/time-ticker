@@ -21,7 +21,7 @@ export class TimeTicker extends HTMLElement {
             controller: undefined,
         };
     }
-    onTicks({ idx, repeat, loop, items }) {
+    rotateItem({ idx, items }) {
         return {
             value: {
                 idx,
@@ -91,7 +91,7 @@ const xe = new XE({
                 ifAllOf: ['duration'],
                 ifNoneOf: ['disabled'],
             },
-            onTicks: {
+            rotateItem: {
                 ifKeyIn: ['repeat', 'loop', 'idx'],
                 ifNoneOf: ['disabled'],
             }

@@ -40,7 +40,7 @@ const da = {
                 ifAllOf: ['duration'],
                 ifNoneOf: ['disabled'],
             },
-            onTicks: {
+            rotateItem: {
                 ifAllOf: ['ticks'],
                 ifKeyIn: ['repeat', 'loop'],
                 ifNoneOf: ['disabled'],

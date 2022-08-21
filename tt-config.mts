@@ -43,7 +43,7 @@ const da: DefineArgs<TimeTickerProps, TimeTickerActions> = {
                 ifAllOf: ['duration'],
                 ifNoneOf: ['disabled'],
             },
-            onTicks: {
+            rotateItem: {
                 ifAllOf: ['ticks'],
                 ifKeyIn: ['repeat', 'loop'],
                 ifNoneOf: ['disabled'],

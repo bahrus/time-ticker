@@ -27,7 +27,7 @@ export class TimeTicker extends HTMLElement implements TimeTickerActions{
     }
 
 
-    onTicks({idx, repeat, loop, items}: this){
+    rotateItem({idx, items}: this){
         return {
             value: {
                 idx,
@@ -100,7 +100,7 @@ const xe = new XE<TimeTickerProps, TimeTickerActions>({
                 ifAllOf: ['duration'],
                 ifNoneOf: ['disabled'],
             },
-            onTicks: {
+            rotateItem: {
                 ifKeyIn: ['repeat', 'loop', 'idx'],
                 ifNoneOf: ['disabled'],
             }
