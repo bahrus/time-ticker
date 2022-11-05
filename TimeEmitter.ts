@@ -4,7 +4,7 @@ export class TimeEmitter extends EventTarget{
         this.scheduleFrame(this.start);
     }
 
-    emits: 'value-changed';
+    emits = 'value-changed';
 
     start = document.timeline.currentTime!;
 

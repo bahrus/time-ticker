@@ -7,7 +7,7 @@ export class TimeEmitter extends EventTarget {
         this.signal = signal;
         this.scheduleFrame(this.start);
     }
-    emits;
+    emits = 'value-changed';
     start = document.timeline.currentTime;
     frame = (time) => {
         const { signal, emits } = this;

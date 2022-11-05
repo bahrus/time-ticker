@@ -9,15 +9,20 @@ export class TimeTicker extends HTMLElement {
         const newController = new AbortController();
         const { TimeEmitter } = await import('./TimeEmitter.js');
         const timeEmitter = new TimeEmitter(duration, newController.signal);
-        timeEmitter.addEventListener(timeEmitter.emits, e => {
-            this.ticks++;
-        });
+        // timeEmitter.addEventListener(timeEmitter.emits, e => {
+        //     this.ticks++;
+        // });
         // animationInterval(duration, newController.signal, time => {
         //     this.ticks++;
         // });
+        return [{
+                controller: newController,
+                ticks: wait ? ticks : ticks + 1,
+            }, { incTicks: { on: timeEmitter.emits, of: timeEmitter } }];
+    }
+    incTicks({ ticks }) {
         return {
-            controller: newController,
-            ticks: wait ? ticks : ticks + 1,
+            ticks: ticks + 1
         };
     }
     stop({ controller }) {

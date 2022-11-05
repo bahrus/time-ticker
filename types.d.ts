@@ -1,4 +1,5 @@
 import {SimpleWCInfo} from 'may-it-be/SimpleWCInfo';
+import {ActionOnEventConfigs} from 'trans-render/froop/types';
 
 export interface IValue{
     idx: number,
@@ -9,7 +10,7 @@ export interface IValue{
  * time-ticker props
  * 
  */
-export interface TimeTickerProps {
+export interface EndUserProps {
     /**
      * Items to rotate through and broadcast
      */
@@ -50,24 +51,28 @@ export interface TimeTickerProps {
      * Wait for the duration before firing the first tick.
      */
     wait: boolean,
+
+}
+
+export interface AllProps extends EndUserProps{
     /**
      * Abort controller for the time ticker
      */
-    controller: AbortController,
+     controller: AbortController,
 }
 
 /**
  * time-ticker actions
  */
-export interface TimeTickerActions {
+export interface Actions {
     /**
      * 
      * Starts the timer
      */
-    start: (self: this) => Promise<{
+    start: (self: this) => Promise<[{
         controller: AbortController | undefined,
         ticks: number,
-    }>,
+    }, ActionOnEventConfigs<AllProps, Actions> ]>,
     /**
      * Stop the timer
      */
@@ -80,13 +85,17 @@ export interface TimeTickerActions {
     rotateItem: (self: this) => {
         value?: IValue,
     },
+
+    incTicks: (self: this) => {
+        ticks: number,
+    }
 }
 
-export abstract class TimeTickerInfo implements SimpleWCInfo<TimeTickerProps>{
+export abstract class TimeTickerInfo implements SimpleWCInfo<AllProps>{
     src: './time-ticker.js';
     tagName: 'time-ticker';
-    props: TimeTickerProps;
-    methods: TimeTickerActions;
+    props: EndUserProps;
+    methods: Actions;
     nonAttribProps: ['value', 'controller'];
     
 }
