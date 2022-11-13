@@ -61,6 +61,10 @@ export interface AllProps extends EndUserProps{
      controller: AbortController,
 }
 
+export type PP = Partial<AllProps>;
+
+export type PPE = [PP, ActionOnEventConfigs<AllProps, Actions>];
+
 /**
  * time-ticker actions
  */
@@ -69,10 +73,7 @@ export interface Actions {
      * 
      * Starts the timer
      */
-    start: (self: this) => Promise<[{
-        controller: AbortController | undefined,
-        ticks: number,
-    }, ActionOnEventConfigs<AllProps, Actions> ]>,
+    start(self: this): Promise<PPE>,
     /**
      * Stop the timer
      */

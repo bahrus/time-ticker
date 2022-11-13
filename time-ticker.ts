@@ -1,6 +1,5 @@
-import {EndUserProps, Actions, AllProps} from './types';
-import {XE} from 'xtal-element/XE.js';
-//import {animationInterval} from './animationInterval.js';
+import {Actions, AllProps, PPE} from './types';
+import {XE, ActionOnEventConfigs} from 'xtal-element/XE.js';
 
 export class TimeTicker extends HTMLElement implements Actions{
 
@@ -12,17 +11,15 @@ export class TimeTicker extends HTMLElement implements Actions{
         const newController = new AbortController();
         const {TimeEmitter} = await import('./TimeEmitter.js');
         const timeEmitter = new TimeEmitter(duration, newController.signal);
-        // timeEmitter.addEventListener(timeEmitter.emits, e => {
-        //     this.ticks++;
-        // });
-
-        // animationInterval(duration, newController.signal, time => {
-        //     this.ticks++;
-        // });
-        return [{
-            controller: newController,
-            ticks: wait ? ticks : ticks + 1,
-        }, {incTicks: {on: timeEmitter.emits, of: timeEmitter}}];
+        return [
+            {
+                controller: newController,
+                ticks: wait ? ticks : ticks + 1,
+            }, 
+            {
+                incTicks: {on: timeEmitter.emits, of: timeEmitter}
+            }
+        ] as PPE;
     }
 
     incTicks({ticks}: this){
@@ -51,7 +48,7 @@ export class TimeTicker extends HTMLElement implements Actions{
 
 export interface TimeTicker extends AllProps{}
 
-const xe = new XE<EndUserProps, Actions>({
+const xe = new XE<AllProps, Actions>({
     config:{
         tagName: 'time-ticker',
         propDefaults: {

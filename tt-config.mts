@@ -1,7 +1,7 @@
 import {DefineArgs} from 'xtal-element/src/types';
-import {TimeTickerProps, TimeTickerActions} from './types';
+import {EndUserProps, Actions} from './types';
 
-const da: DefineArgs<TimeTickerProps, TimeTickerActions> = {
+const da: DefineArgs<EndUserProps, Actions> = {
     config:{
         tagName: 'time-ticker',
         propDefaults: {
