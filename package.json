@@ -5,7 +5,7 @@
   "main": "time-ticker.js",
   "module": "time-ticker.js",
   "dependencies": {
-    "xtal-element": "0.0.536",
+    "xtal-element": "0.0.537",
     "trans-render": "0.0.641"
   },
   "devDependencies": {
