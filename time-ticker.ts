@@ -4,7 +4,6 @@ import {XE, ActionOnEventConfigs} from 'xtal-element/XE.js';
 export class TimeTicker extends HTMLElement implements Actions{
 
     async start({duration, ticks, wait, controller}: this) {
-        console.log({duration, ticks, wait, controller});
         if(controller !== undefined){
             ticks = 0;
             controller.abort();
