@@ -59,6 +59,8 @@ export interface AllProps extends EndUserProps{
      * Abort controller for the time ticker
      */
      controller: AbortController,
+
+     isAttrParsed: boolean,
 }
 
 export type PP = Partial<AllProps>;

@@ -4,6 +4,7 @@ import {XE, ActionOnEventConfigs} from 'xtal-element/XE.js';
 export class TimeTicker extends HTMLElement implements Actions{
 
     async start({duration, ticks, wait, controller}: this) {
+        console.log({duration, ticks, wait, controller});
         if(controller !== undefined){
             ticks = 0;
             controller.abort();
@@ -52,9 +53,10 @@ const xe = new XE<AllProps, Actions>({
     config:{
         tagName: 'time-ticker',
         propDefaults: {
+            isAttrParsed: false,
             ticks: 0,
             idx: -1,
-            duration: 1_000,
+            duration: 7_000,
             repeat: Infinity,
             enabled: true,
             disabled: false,
@@ -106,7 +108,7 @@ const xe = new XE<AllProps, Actions>({
                 ifAllOf: ['disabled', 'controller']
             },
             start:{
-                ifAllOf: ['duration'],
+                ifAllOf: ['duration', 'isAttrParsed'],
                 ifNoneOf: ['disabled'],
             },
             rotateItem: {

@@ -11,8 +11,9 @@ export class TimeEmitter extends EventTarget {
     start = document.timeline.currentTime;
     frame = (time) => {
         const { signal, emits } = this;
-        if (signal.aborted)
+        if (signal.aborted) {
             return;
+        }
         this.dispatchEvent(new CustomEvent(emits, {
             detail: {
                 value: time,

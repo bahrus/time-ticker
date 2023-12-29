@@ -1,7 +1,7 @@
 export class TimeEmitter extends EventTarget{
     constructor(public ms: number, public signal: AbortSignal){
         super();
-        this.scheduleFrame(this.start);
+        this.scheduleFrame(this.start as DOMHighResTimeStamp);
     }
 
     emits = 'value-changed';
@@ -10,7 +10,9 @@ export class TimeEmitter extends EventTarget{
 
     frame = (time: DOMHighResTimeStamp) => {
         const {signal, emits} = this
-        if (signal.aborted) return;
+        if (signal.aborted) {
+            return;
+        } 
         this.dispatchEvent(new CustomEvent(emits, {
             detail:{
                 value: time,

@@ -1,7 +1,7 @@
 import { XE } from 'xtal-element/XE.js';
-//import {animationInterval} from './animationInterval.js';
 export class TimeTicker extends HTMLElement {
     async start({ duration, ticks, wait, controller }) {
+        console.log({ duration, ticks, wait, controller });
         if (controller !== undefined) {
             ticks = 0;
             controller.abort();
@@ -9,10 +9,15 @@ export class TimeTicker extends HTMLElement {
         const newController = new AbortController();
         const { TimeEmitter } = await import('./TimeEmitter.js');
         const timeEmitter = new TimeEmitter(duration, newController.signal);
-        return [{
+        return [
+            {
                 controller: newController,
                 ticks: wait ? ticks : ticks + 1,
-            }, { incTicks: { on: timeEmitter.emits, of: timeEmitter } }];
+            },
+            {
+                incTicks: { on: timeEmitter.emits, of: timeEmitter }
+            }
+        ];
     }
     incTicks({ ticks }) {
         return {
@@ -38,9 +43,10 @@ const xe = new XE({
     config: {
         tagName: 'time-ticker',
         propDefaults: {
+            isAttrParsed: false,
             ticks: 0,
             idx: -1,
-            duration: 1_000,
+            duration: 7_000,
             repeat: Infinity,
             enabled: true,
             disabled: false,
@@ -92,7 +98,7 @@ const xe = new XE({
                 ifAllOf: ['disabled', 'controller']
             },
             start: {
-                ifAllOf: ['duration'],
+                ifAllOf: ['duration', 'isAttrParsed'],
                 ifNoneOf: ['disabled'],
             },
             rotateItem: {

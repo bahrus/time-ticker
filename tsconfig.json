@@ -5,8 +5,7 @@
 		"sourceMap": false,
 		"experimentalDecorators": true,
 		"strict": true,
-		"newLine": "LF",
-		"watch": true
+		"newLine": "LF"
 	},
 	"files": [
 		"time-ticker.ts",

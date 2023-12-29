@@ -62,16 +62,6 @@
               "description": "Wait for the duration before firing the first tick."
             },
             {
-              "kind": "field",
-              "name": "controller",
-              "description": "Abort controller for the time ticker"
-            },
-            {
-              "kind": "method",
-              "name": "start",
-              "description": "Starts the timer"
-            },
-            {
               "kind": "method",
               "name": "stop",
               "description": "Stop the timer"
@@ -80,6 +70,10 @@
               "kind": "method",
               "name": "rotateItem",
               "description": "React to an uptick."
+            },
+            {
+              "kind": "method",
+              "name": "incTicks"
             }
           ],
           "attributes": [
@@ -122,10 +116,6 @@
             {
               "name": "wait",
               "description": "Wait for the duration before firing the first tick."
-            },
-            {
-              "name": "controller",
-              "description": "Abort controller for the time ticker"
             }
           ],
           "cssParts": [],
