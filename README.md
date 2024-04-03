@@ -8,7 +8,7 @@
 
 time-ticker is a non-visible custom element that fires an event periodically.
 
-![](https://media.giphy.com/media/Hlb53yZwhKobm/giphy.gif)
+![](https://media.giphy.com/media/Hlb53yZwhKobm/giphy.gif =250x)
 
 Uses this [library](https://gist.github.com/jakearchibald/cb03f15670817001b1157e62a076fe95), explained [here](https://youtu.be/MCi6AZMkxcU).
 
