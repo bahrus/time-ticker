@@ -1,6 +1,3 @@
-import {SimpleWCInfo} from 'may-it-be/SimpleWCInfo';
-import {ActionOnEventConfigs} from 'trans-render/froop/types';
-
 export interface IValue{
     idx: number,
     item: any,
@@ -10,15 +7,15 @@ export interface IValue{
  * time-ticker props
  * 
  */
-export interface EndUserProps {
+export interface EndUserProps<TItem = any> {
     /**
      * Items to rotate through and broadcast
      */
-    items: any[],
+    items?: TItem[],
     /**
-     * Currently selected idx value and selected item
+     * Currently selected item
      */
-    value: IValue,
+    item?: TItem,
     /**
      * Current index of items (if applicable)
      */
@@ -30,23 +27,20 @@ export interface EndUserProps {
     /**
      * Upper bound for idx before being reset to 0
      */
-    repeat: number,
+    repeat?: number,
     /**
      * Start the time ticker.  Toggles disabled state
      */
-    enabled: boolean,
+    enabled?: boolean,
     /**
      * Stop the time ticker. 
      */
-    disabled: boolean,
+    disabled?: boolean,
     /**
      * Loop the time ticker.
      */
-    loop: boolean,
-    /**
-     * Number of ticks encountered regardless of any looping / repeating.
-     */
-    ticks: number,
+    loop?: boolean,
+
     /**
      * Wait for the duration before firing the first tick.
      */
@@ -54,18 +48,28 @@ export interface EndUserProps {
 
 }
 
-export interface AllProps extends EndUserProps{
+export interface EventTargetProps {
+    timeEmitter: ITimeEmitter,
+}
+
+export interface AllProps extends EndUserProps, EventTargetProps{
     /**
      * Abort controller for the time ticker
      */
-     controller: AbortController,
+    timeEmitterAC?: AbortController,
+    /**
+     * Number of ticks encountered regardless of any looping / repeating.
+     */
+    ticks: number,
 
-     isAttrParsed: boolean,
+
+
 }
 
-export type PP = Partial<AllProps>;
 
-export type PPE = [PP, ActionOnEventConfigs<AllProps, Actions>];
+export type PAP = Partial<AllProps>;
+
+export type ProPAP = Promise<PAP>;
 
 /**
  * time-ticker actions
@@ -75,32 +79,22 @@ export interface Actions {
      * 
      * Starts the timer
      */
-    start(self: this): Promise<PPE>,
+    start(self: this): ProPAP,
     /**
      * Stop the timer
      */
-    stop: (self: this) => {
-        controller: AbortController | undefined,
-    },
+    stop(self: this): PAP,
     /**
      * React to an uptick.
      */
-    rotateItem: (self: this) => {
-        value?: IValue,
-    },
-
-    incTicks: (self: this) => {
-        ticks: number,
-    }
+    rotateItem(self: this) : PAP
+    /**
+     * Increment the tick count by 1
+     * @param self 
+     */
+    incTicks(self: this): PAP
 }
 
-export abstract class TimeTickerInfo implements SimpleWCInfo<AllProps>{
-    src: './time-ticker.js';
-    tagName: 'time-ticker';
-    props: EndUserProps;
-    methods: Actions;
-    nonAttribProps: ['value', 'controller'];
-    
-}
+export interface ITimeEmitter extends EventTarget{
 
-export type Package = [TimeTickerInfo];
+}

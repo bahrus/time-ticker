@@ -1,35 +1,42 @@
-import { XE } from 'xtal-element/XE.js';
-export class TimeTicker extends HTMLElement {
-    async start({ duration, ticks, wait, controller }) {
-        if (controller !== undefined) {
+import {Actions, AllProps, PPE} from './types';
+import {XE, ActionOnEventConfigs} from 'xtal-element/XE.js';
+
+export class TimeTicker extends HTMLElement implements Actions{
+
+    async start({duration, ticks, wait, controller}: this) {
+        if(controller !== undefined){
             ticks = 0;
             controller.abort();
         }
         const newController = new AbortController();
-        const { TimeEmitter } = await import('./TimeEmitter.js');
+        const {TimeEmitter} = await import('../TimeEmitter.js');
         const timeEmitter = new TimeEmitter(duration, newController.signal);
         return [
             {
                 controller: newController,
                 ticks: wait ? ticks : ticks + 1,
-            },
+            }, 
             {
-                incTicks: { on: timeEmitter.emits, of: timeEmitter }
+                incTicks: {on: timeEmitter.emits, of: timeEmitter}
             }
-        ];
+        ] as PPE;
     }
-    incTicks({ ticks }) {
+
+    incTicks({ticks}: this){
         return {
             ticks: ticks + 1
-        };
+        }
     }
-    stop({ controller }) {
+
+    stop({controller}: this) {
         controller.abort();
         return {
             controller: undefined,
         };
     }
-    rotateItem({ idx, items }) {
+
+
+    rotateItem({idx, items}: this){
         return {
             value: {
                 idx,
@@ -38,8 +45,11 @@ export class TimeTicker extends HTMLElement {
         };
     }
 }
-const xe = new XE({
-    config: {
+
+export interface TimeTicker extends AllProps{}
+
+const xe = new XE<AllProps, Actions>({
+    config:{
         tagName: 'time-ticker',
         propDefaults: {
             isAttrParsed: false,
@@ -52,8 +62,8 @@ const xe = new XE({
             loop: false,
             wait: true,
         },
-        propInfo: {
-            enabled: {
+        propInfo:{
+            enabled:{
                 dry: false,
                 notify: {
                     negateTo: 'disabled',
@@ -69,8 +79,8 @@ const xe = new XE({
                 parse: false,
             },
             items: {
-                notify: {
-                    lengthTo: 'repeat'
+                notify:{
+                    lengthTo:'repeat'
                 }
             },
             ticks: {
@@ -93,10 +103,10 @@ const xe = new XE({
             display: 'none',
         },
         actions: {
-            stop: {
+            stop:{
                 ifAllOf: ['disabled', 'controller']
             },
-            start: {
+            start:{
                 ifAllOf: ['duration', 'isAttrParsed'],
                 ifNoneOf: ['disabled'],
             },
@@ -108,3 +118,4 @@ const xe = new XE({
     },
     superclass: TimeTicker,
 });
+

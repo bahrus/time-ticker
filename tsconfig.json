@@ -8,10 +8,7 @@
 		"newLine": "LF"
 	},
 	"files": [
-		"time-ticker.ts",
-		"doc.mts",
-		"tt-config.mts",
-		"trial.mts"
+		"time-ticker.ts"
 	]
 
 }

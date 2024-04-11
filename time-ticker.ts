@@ -1,121 +1,81 @@
-import {Actions, AllProps, PPE} from './types';
-import {XE, ActionOnEventConfigs} from 'xtal-element/XE.js';
+import {O, OConfig} from 'trans-render/froop/O.js';
+import {Actions, AllProps, EventTargetProps, PAP} from './types';
 
-export class TimeTicker extends HTMLElement implements Actions{
-
-    async start({duration, ticks, wait, controller}: this) {
-        if(controller !== undefined){
-            ticks = 0;
-            controller.abort();
-        }
-        const newController = new AbortController();
-        const {TimeEmitter} = await import('./TimeEmitter.js');
-        const timeEmitter = new TimeEmitter(duration, newController.signal);
-        return [
-            {
-                controller: newController,
-                ticks: wait ? ticks : ticks + 1,
-            }, 
-            {
-                incTicks: {on: timeEmitter.emits, of: timeEmitter}
-            }
-        ] as PPE;
-    }
-
-    incTicks({ticks}: this){
-        return {
-            ticks: ticks + 1
-        }
-    }
-
-    stop({controller}: this) {
-        controller.abort();
-        return {
-            controller: undefined,
-        };
-    }
-
-
-    rotateItem({idx, items}: this){
-        return {
-            value: {
-                idx,
-                item: (items && items.length > idx) ? items[idx] : undefined,
-            }
-        };
-    }
-}
-
-export interface TimeTicker extends AllProps{}
-
-const xe = new XE<AllProps, Actions>({
-    config:{
-        tagName: 'time-ticker',
-        propDefaults: {
-            isAttrParsed: false,
+export class TimeTicker extends O implements Actions{
+    static override config: OConfig<AllProps, Actions, EventTargetProps> = {
+        name: 'time-ticker',
+        propDefaults:{
             ticks: 0,
             idx: -1,
-            duration: 7_000,
-            repeat: Infinity,
+            duration: 1_000,
             enabled: true,
-            disabled: false,
             loop: false,
             wait: true,
         },
         propInfo:{
             enabled:{
                 dry: false,
-                notify: {
-                    negateTo: 'disabled',
-                }
+                parse: true,
             },
-            repeat: {
-                dry: false,
-            },
-            value: {
-                notify: {
-                    dispatch: true,
-                },
-                parse: false,
+            disabled: {
+                type: 'Boolean',
+
             },
             items: {
-                notify:{
-                    lengthTo:'repeat'
-                }
+                type: 'Object'
             },
             ticks: {
-                notify: {
-                    incTo: {
-                        key: 'idx',
-                        lt: 'repeat',
-                        loop: 'loop',
-                        notifyWhenMax: {
-                            setTo: {
-                                key: 'disabled',
-                                val: true,
-                            },
-                        }
-                    }
-                }
+                ro: true,
             }
         },
-        style: {
-            display: 'none',
+        compacts: {
+            enabled_to_disabled: 'negate'
         },
-        actions: {
-            stop:{
-                ifAllOf: ['disabled', 'controller']
-            },
-            start:{
-                ifAllOf: ['duration', 'isAttrParsed'],
-                ifNoneOf: ['disabled'],
-            },
-            rotateItem: {
-                ifKeyIn: ['repeat', 'loop', 'idx'],
-                ifNoneOf: ['disabled'],
-            }
+        handlers: {
+            timeEmitter_to_incTicks_on: 'value-changed'
         }
-    },
-    superclass: TimeTicker,
-});
+        
+    }
 
+    async start(self: this){
+        const {timeEmitterAC: oldController, ticks: oldTicks, duration} = self;
+        let ticks = oldTicks;
+        if(oldController !== undefined){
+            ticks = 0;
+            oldController.abort();
+        }
+        const timeEmitterAC = new AbortController();
+        const {TimeEmitter} = await import('./TimeEmitter.js');
+        const timeEmitter = new TimeEmitter(duration, timeEmitterAC.signal);
+        return {
+            timeEmitterAC,
+            ticks,
+            timeEmitter
+        } as PAP;
+    }
+
+    incTicks(self: this){
+        const {ticks: oldTicks} = self
+        return {
+            ticks: oldTicks + 1
+        } as PAP;
+    }
+
+    stop(self: this){
+        const {timeEmitterAC: oldController} = self;
+        oldController!.abort();
+        return {
+            timeEmitterAC: undefined
+        } as PAP;
+    }
+
+    rotateItem(self: this){
+        const {idx, items} = self;
+        return {
+            item: (items && items.length > idx && idx > -1) ? items[idx] : undefined,
+        }
+    }
+
+}
+
+export interface TimeTicker extends AllProps{}

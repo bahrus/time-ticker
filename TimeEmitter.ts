@@ -1,4 +1,6 @@
-export class TimeEmitter extends EventTarget{
+import { ITimeEmitter } from "./types";
+
+export class TimeEmitter extends EventTarget implements ITimeEmitter{
     constructor(public ms: number, public signal: AbortSignal){
         super();
         this.scheduleFrame(this.start as DOMHighResTimeStamp);
