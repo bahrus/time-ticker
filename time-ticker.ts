@@ -50,6 +50,11 @@ export class TimeTicker extends O implements Actions{
             },
             timeEmitter:  {
                 ro: true,
+            },
+            wait: {
+                type: 'Boolean',
+                parse: true,
+                attrName: 'wait'
             }
         },
         actions:{
@@ -75,15 +80,15 @@ export class TimeTicker extends O implements Actions{
         positractions: [
             {
                 do: 'getNextValOfLoop',
-                on: ['ticks'],
+                ifAllOf: ['ticks'],
                 pass: ['idx', 0, 'repeat', 1, true],
-                assignTo: ['idx']
+                assignTo: ['idx'],
             },
-            // {
-            //     do: dispatchEvent,
-            //     on: ['idx'],
-            //     pass: ['$0', '`value-changed`']
-            // }
+            {
+                do: dispatchEvent,
+                ifKeyIn: ['idx'],
+                pass: ['$0', '`value-changed`']
+            }
         ]
         
     }
@@ -108,9 +113,7 @@ export class TimeTicker extends O implements Actions{
     }
 
     incTicks(self: this){
-        
         const {ticks: oldTicks} = self
-        ''console.log({oldTicks});
         return {
             ticks: oldTicks + 1
         } as PAP;
@@ -126,7 +129,6 @@ export class TimeTicker extends O implements Actions{
 
     rotateItem(self: this){
         const {idx, items} = self;
-        console.log({idx, items});
         return {
             item: (items && items.length > idx && idx > -1) ? items[idx] : undefined,
         }

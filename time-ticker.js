@@ -1,5 +1,6 @@
 import { O } from 'trans-render/froop/O.js';
 import { getNextValOfLoop } from 'trans-render/positractions/getNextValOfLoop.js';
+import { dispatchEvent } from 'trans-render/positractions/dispatchEvent.js';
 export class TimeTicker extends O {
     static config = {
         name: 'time-ticker',
@@ -46,6 +47,11 @@ export class TimeTicker extends O {
             },
             timeEmitter: {
                 ro: true,
+            },
+            wait: {
+                type: 'Boolean',
+                parse: true,
+                attrName: 'wait'
             }
         },
         actions: {
@@ -71,15 +77,15 @@ export class TimeTicker extends O {
         positractions: [
             {
                 do: 'getNextValOfLoop',
-                on: ['ticks'],
+                ifAllOf: ['ticks'],
                 pass: ['idx', 0, 'repeat', 1, true],
-                assignTo: ['idx']
+                assignTo: ['idx'],
             },
-            // {
-            //     do: dispatchEvent,
-            //     on: ['idx'],
-            //     pass: ['$0', '`value-changed`']
-            // }
+            {
+                do: dispatchEvent,
+                ifKeyIn: ['idx'],
+                pass: ['$0', '`value-changed`']
+            }
         ]
     };
     getNextValOfLoop = getNextValOfLoop;
@@ -101,8 +107,6 @@ export class TimeTicker extends O {
     }
     incTicks(self) {
         const { ticks: oldTicks } = self;
-        '';
-        console.log({ oldTicks });
         return {
             ticks: oldTicks + 1
         };
@@ -116,7 +120,6 @@ export class TimeTicker extends O {
     }
     rotateItem(self) {
         const { idx, items } = self;
-        console.log({ idx, items });
         return {
             item: (items && items.length > idx && idx > -1) ? items[idx] : undefined,
         };
