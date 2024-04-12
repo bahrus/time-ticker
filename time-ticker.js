@@ -1,6 +1,5 @@
 import { O } from 'trans-render/froop/O.js';
 import { getNextValOfLoop } from 'trans-render/positractions/getNextValOfLoop.js';
-import { dispatchEvent } from 'trans-render/positractions/dispatchEvent.js';
 export class TimeTicker extends O {
     static config = {
         name: 'time-ticker',
@@ -20,11 +19,47 @@ export class TimeTicker extends O {
             disabled: {
                 type: 'Boolean',
             },
+            item: {
+                type: 'Object',
+                ro: true,
+            },
             items: {
-                type: 'Object'
+                type: 'Object',
+                parse: true,
+                attrName: 'items'
+            },
+            loop: {
+                type: 'Boolean',
+                parse: true,
+                attrName: 'loop'
+            },
+            repeat: {
+                type: 'Number',
+                parse: true,
+                attrName: 'repeat',
             },
             ticks: {
                 ro: true,
+            },
+            timeEmitterAC: {
+                ro: true,
+            },
+            timeEmitter: {
+                ro: true,
+            }
+        },
+        actions: {
+            start: {
+                ifAllOf: ['duration'],
+                ifNoneOf: ['disabled']
+            },
+            rotateItem: {
+                ifKeyIn: ['repeat', 'loop', 'idx'],
+                ifAllOf: ['items'],
+                ifNoneOf: ['disabled']
+            },
+            stop: {
+                ifAllOf: ['disabled', 'timeEmitterAC']
             }
         },
         compacts: {
@@ -35,16 +70,16 @@ export class TimeTicker extends O {
         },
         positractions: [
             {
-                do: getNextValOfLoop,
+                do: 'getNextValOfLoop',
                 on: ['ticks'],
                 pass: ['idx', 0, 'repeat', 1, true],
                 assignTo: ['idx']
             },
-            {
-                do: dispatchEvent,
-                on: ['idx'],
-                pass: ['$0', '`value-changed`']
-            }
+            // {
+            //     do: dispatchEvent,
+            //     on: ['idx'],
+            //     pass: ['$0', '`value-changed`']
+            // }
         ]
     };
     getNextValOfLoop = getNextValOfLoop;
@@ -66,6 +101,8 @@ export class TimeTicker extends O {
     }
     incTicks(self) {
         const { ticks: oldTicks } = self;
+        '';
+        console.log({ oldTicks });
         return {
             ticks: oldTicks + 1
         };
@@ -79,6 +116,7 @@ export class TimeTicker extends O {
     }
     rotateItem(self) {
         const { idx, items } = self;
+        console.log({ idx, items });
         return {
             item: (items && items.length > idx && idx > -1) ? items[idx] : undefined,
         };

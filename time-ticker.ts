@@ -23,11 +23,47 @@ export class TimeTicker extends O implements Actions{
                 type: 'Boolean',
 
             },
+            item:{
+                type: 'Object',
+                ro: true,
+            },
             items: {
-                type: 'Object'
+                type: 'Object',
+                parse: true,
+                attrName: 'items'
+            },
+            loop:{
+                type: 'Boolean',
+                parse: true,
+                attrName: 'loop'
+            },
+            repeat:{
+                type: 'Number',
+                parse: true,
+                attrName: 'repeat',
             },
             ticks: {
                 ro: true,
+            },
+            timeEmitterAC: {
+                ro: true,
+            },
+            timeEmitter:  {
+                ro: true,
+            }
+        },
+        actions:{
+            start:{
+                ifAllOf: ['duration'],
+                ifNoneOf: ['disabled']
+            },
+            rotateItem: {
+                ifKeyIn: ['repeat', 'loop', 'idx'],
+                ifAllOf: ['items'],
+                ifNoneOf: ['disabled']
+            },
+            stop: {
+                ifAllOf: ['disabled', 'timeEmitterAC']
             }
         },
         compacts: {
@@ -38,16 +74,16 @@ export class TimeTicker extends O implements Actions{
         },
         positractions: [
             {
-                do: getNextValOfLoop,
+                do: 'getNextValOfLoop',
                 on: ['ticks'],
                 pass: ['idx', 0, 'repeat', 1, true],
                 assignTo: ['idx']
             },
-            {
-                do: dispatchEvent,
-                on: ['idx'],
-                pass: ['$0', '`value-changed`']
-            }
+            // {
+            //     do: dispatchEvent,
+            //     on: ['idx'],
+            //     pass: ['$0', '`value-changed`']
+            // }
         ]
         
     }
@@ -72,7 +108,9 @@ export class TimeTicker extends O implements Actions{
     }
 
     incTicks(self: this){
+        
         const {ticks: oldTicks} = self
+        ''console.log({oldTicks});
         return {
             ticks: oldTicks + 1
         } as PAP;
@@ -88,6 +126,7 @@ export class TimeTicker extends O implements Actions{
 
     rotateItem(self: this){
         const {idx, items} = self;
+        console.log({idx, items});
         return {
             item: (items && items.length > idx && idx > -1) ? items[idx] : undefined,
         }
