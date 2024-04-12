@@ -93,6 +93,29 @@ export interface Actions {
      * @param self 
      */
     incTicks(self: this): PAP
+
+    /**
+     * Positractions
+     */
+
+    /**
+     * Generic positraction to help with counting, optionally with looping support
+     * @param currentVal 
+     * @param from 
+     * @param to 
+     * @param step 
+     * @param loopIfMax 
+     * @returns 
+     */
+    getNextValOfLoop: (currentVal: number, from: number,  to: number, step: number, loopIfMax: boolean) => [nextVal: number, hitMax: boolean, startedLoop: boolean]
+
+    /**
+     * dispatch event from passed in event target
+     * @param src 
+     * @param name 
+     * @returns 
+     */
+    de: (src: EventTarget, name: string) => Event;
 }
 
 export interface ITimeEmitter extends EventTarget{

@@ -85,14 +85,14 @@ export class TimeTicker extends O implements Actions{
                 assignTo: ['idx'],
             },
             {
-                do: dispatchEvent,
+                do: 'de',
                 ifKeyIn: ['idx'],
                 pass: ['$0', '`value-changed`']
             }
         ]
         
     }
-
+    de = dispatchEvent;
     getNextValOfLoop = getNextValOfLoop;
 
     async start(self: this){
