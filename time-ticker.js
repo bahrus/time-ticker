@@ -3,7 +3,6 @@ import { getNextValOfLoop } from 'trans-render/positractions/getNextValOfLoop.js
 import { dispatchEvent } from 'trans-render/positractions/dispatchEvent.js';
 export class TimeTicker extends O {
     static config = {
-        name: 'time-ticker',
         propDefaults: {
             ticks: 0,
             idx: -1,
@@ -16,6 +15,7 @@ export class TimeTicker extends O {
             enabled: {
                 dry: false,
                 parse: true,
+                type: 'Boolean',
             },
             disabled: {
                 type: 'Boolean',
@@ -69,7 +69,10 @@ export class TimeTicker extends O {
             }
         },
         compacts: {
-            enabled_to_disabled: 'negate'
+            negate_enabled_to_disabled: 0,
+            pass_length_of_items_to_repeat: 999_999_999
+            //enabled_to_disabled: 'negate'
+            //when_disabled_changes_inc_disabled_by: 10
         },
         handlers: {
             timeEmitter_to_incTicks_on: 'value-changed'
@@ -82,12 +85,13 @@ export class TimeTicker extends O {
                 assignTo: ['idx'],
             },
             {
-                do: dispatchEvent,
+                do: 'de',
                 ifKeyIn: ['idx'],
                 pass: ['$0', '`value-changed`']
             }
         ]
     };
+    de = dispatchEvent;
     getNextValOfLoop = getNextValOfLoop;
     async start(self) {
         const { timeEmitterAC: oldController, ticks: oldTicks, duration } = self;

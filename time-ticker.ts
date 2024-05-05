@@ -5,7 +5,6 @@ import {dispatchEvent} from 'trans-render/positractions/dispatchEvent.js';
 
 export class TimeTicker extends O implements Actions{
     static override config: OConfig<AllProps, Actions, EventTargetProps> = {
-        name: 'time-ticker',
         propDefaults:{
             ticks: 0,
             idx: -1,
@@ -18,6 +17,7 @@ export class TimeTicker extends O implements Actions{
             enabled:{
                 dry: false,
                 parse: true,
+                type: 'Boolean',
             },
             disabled: {
                 type: 'Boolean',
@@ -72,7 +72,9 @@ export class TimeTicker extends O implements Actions{
             }
         },
         compacts: {
-            enabled_to_disabled: 'negate'
+            negate_enabled_to_disabled: 0,
+            pass_length_of_items_to_repeat: 999_999_999
+            
         },
         handlers: {
             timeEmitter_to_incTicks_on: 'value-changed'
