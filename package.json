@@ -5,15 +5,15 @@
   "main": "time-ticker.js",
   "module": "time-ticker.js",
   "dependencies": {
-    "xtal-element": "0.0.602",
-    "trans-render": "0.0.764"
+    "xtal-element": "0.0.616",
+    "trans-render": "0.0.819"
   },
   "devDependencies": {
-    "may-it-serve": "0.0.6",
+    "may-it-serve": "0.0.8",
     "on-to-me": "0.0.49",
-    "custom-elements-manifest": "2.0.0",
-    "may-it-be": "0.0.178",
-    "npm-watch": "0.12.0"
+    "custom-elements-manifest": "2.1.0",
+    "may-it-be": "0.0.180",
+    "npm-watch": "0.13.0"
   },
   "watch": {
     "build-manifest": "types.d.ts",
