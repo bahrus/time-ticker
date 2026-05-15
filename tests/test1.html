@@ -29,8 +29,8 @@
                 spawn: TimeTicker,
                 withAttrs: {
                     base: 'time-ticker',
-                    interval: '${base}-interval',
-                    _interval: { instanceOf: 'Number' },
+                    duration: '${base}-duration',
+                    _duration: { instanceOf: 'Number' },
                     disabled: '${base}-disabled',
                     _disabled: { instanceOf: 'Boolean' }
                 }
@@ -41,7 +41,7 @@
     </script>
 </head>
 <body>
-    <test-element time-ticker-interval="500"></test-element>
+    <test-element time-ticker-duration="500"></test-element>
     <script type=module>
         const el = document.querySelector('test-element');
         let count = 0;

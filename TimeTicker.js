@@ -5,7 +5,7 @@
  * A custom element feature that provides precise, drift-correcting ticking.
  * Based on Jake Archibald's gist: https://gist.github.com/jakearchibald/cb03f15670817001b1157e62a076fe95
  * 
- * Emits a "tick" event on the host element at each interval.
+ * Emits a "tick" event on the host element at each duration.
  * 
  * @implements {FeatureProps}
  */
@@ -17,7 +17,7 @@ class TimeTicker extends EventTarget {
     #controller;
 
     /** @type {number} */
-    #interval = 1000;
+    #duration = 1000;
 
     /** @type {boolean} */
     #disabled = false;
@@ -31,7 +31,7 @@ class TimeTicker extends EventTarget {
         super();
         this.#host = new WeakRef(hostElement);
         if (initVals) {
-            if (initVals.interval !== undefined) this.#interval = initVals.interval;
+            if (initVals.duration !== undefined) this.#duration = initVals.duration;
             if (initVals.disabled !== undefined) this.#disabled = initVals.disabled;
         }
         if (!this.#disabled) {
@@ -39,13 +39,13 @@ class TimeTicker extends EventTarget {
         }
     }
 
-    get interval() {
-        return this.#interval;
+    get duration() {
+        return this.#duration;
     }
 
-    set interval(val) {
-        this.#interval = val;
-        // Restart with new interval if currently running
+    set duration(val) {
+        this.#duration = val;
+        // Restart with new duration if currently running
         if (!this.#disabled) {
             this.#stop();
             this.#start();
@@ -69,7 +69,7 @@ class TimeTicker extends EventTarget {
     #start() {
         this.#controller = new AbortController();
         const signal = this.#controller.signal;
-        const ms = this.#interval;
+        const ms = this.#duration;
         const start = document.timeline
             ? /** @type {number} */ (document.timeline.currentTime)
             : performance.now();
