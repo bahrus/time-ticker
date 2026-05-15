@@ -33,6 +33,13 @@ So your statement is still accurate. If you wanted to soften it slightly, you co
 
 ## The TimeTicker Custom Element Feature
 
+The TimeTicker custom element feature supports two properties:
+
+1.  interval (in milleseconds)
+2.  disabled (boolean)
+
+It emits an event with name "tick".
+
 ## Viewing Demos Locally
 
 1. Install git
