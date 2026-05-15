@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test - TimeTicker Feature</title>
+    <!-- #include virtual="/imports.html" -->
+    <script type=module>
+        import 'assign-gingerly/assignFeatures.js';
+        import {TimeTicker} from 'time-ticker/TimeTicker.js';
+
+        // Define a test custom element that uses the feature
+        class TestElement extends HTMLElement {
+            static supportedFeatures = {
+                timeTicker: {
+                    fallbackSpawn: TimeTicker
+                }
+            };
+
+            constructor() {
+                super();
+            }
+        }
+
+        // Inject the feature
+        customElements.assignFeatures(TestElement, {
+            timeTicker: {
+                spawn: TimeTicker,
+                withAttrs: {
+                    base: 'time-ticker',
+                    interval: '${base}-interval',
+                    _interval: { instanceOf: 'Number' },
+                    disabled: '${base}-disabled',
+                    _disabled: { instanceOf: 'Boolean' }
+                }
+            }
+        });
+
+        customElements.define('test-element', TestElement);
+    </script>
+</head>
+<body>
+    <test-element time-ticker-interval="500"></test-element>
+    <script type=module>
+        const el = document.querySelector('test-element');
+        let count = 0;
+        el.addEventListener('tick', () => {
+            count++;
+            document.getElementById('output').textContent = `Ticks: ${count}`;
+        });
+    </script>
+    <div id="output">Ticks: 0</div>
+</body>
+</html>
