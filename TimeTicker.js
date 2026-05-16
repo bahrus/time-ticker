@@ -5,7 +5,7 @@
  * A custom element feature that provides precise, drift-correcting ticking.
  * Based on Jake Archibald's gist: https://gist.github.com/jakearchibald/cb03f15670817001b1157e62a076fe95
  * 
- * Emits a "tick" event on the host element at each duration.
+ * Emits a "tick" event at each duration.
  * 
  * @implements {FeatureProps}
  */
@@ -76,12 +76,7 @@ class TimeTicker extends EventTarget {
 
         const frame = (/** @type {number} */ time) => {
             if (signal.aborted) return;
-            const host = this.#host?.deref();
-            if (!host) {
-                this.#stop();
-                return;
-            }
-            host.dispatchEvent(new Event('tick'));
+            this.dispatchEvent(new Event('tick'));
             scheduleFrame(time);
         };
 

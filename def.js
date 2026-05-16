@@ -9,8 +9,8 @@ customElements.assignFeatures(TimeTickerElement, {
         customData: {
             raConfig: {
                 compacts: {
-                    on_tick_of_timeTicker_inc_ticks_by: 1,
-                    when_idx_changes_dispatch: 'value-changed',
+                    on_tick_of_timeTicker_inc_idx_by: 1,
+                    when_item_changes_dispatch: 'value-changed',
                 },
                 merges: [
                     {
