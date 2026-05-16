@@ -1,5 +1,13 @@
 # time-ticker
 
+[![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/time-ticker)
+
+<a href="https://nodei.co/npm/time-ticker/"><img src="https://nodei.co/npm/time-ticker.png"></a>
+
+<img src="http://img.badgesize.io/https://cdn.jsdelivr.net/npm/time-ticker@0.0.2/dist/time-ticker.iife.min.js?compression=gzip">
+
+![](https://media.giphy.com/media/Hlb53yZwhKobm/giphy.gif)
+
 This package contains two exported modules:
 
 1.  A light-weight, reusable, TimeTicker [custom element feature](https://github.com/bahrus/assign-gingerly#custom-element-features).  It provides a precise atomic clock-like class that emits events on each tick. The logic for implementing the precise ticking is based on this [gist](https://gist.github.com/jakearchibald/cb03f15670817001b1157e62a076fe95) explained [here](https://youtu.be/MCi6AZMkxcU).  It's been a while, and maybe the platform provides more official support for implementing precise tickers, but for now we assume not.  
@@ -31,6 +39,8 @@ So your statement is still accurate. If you wanted to soften it slightly, you co
 
 2.  A feature rich non visual custom element time-ticker custom element (time-ticker is the canonical name), that supports rotating through items of a list.
 
+time-ticker uses JSON modules, which is now considered baseline in all the major browsers.
+
 ## The TimeTicker Custom Element Feature
 
 The TimeTicker custom element feature supports two properties:
@@ -39,6 +49,12 @@ The TimeTicker custom element feature supports two properties:
 2.  disabled (boolean)
 
 It emits an event with name "tick".
+
+## The time-ticker custom element
+
+The custom element adds an additional property:
+
+3.  "Items" that need rotating.
 
 ## Viewing Demos Locally
 
