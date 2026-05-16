@@ -56,6 +56,37 @@ The custom element adds an additional property:
 
 3.  "Items" that need rotating.
 
+To use, import time-ticker/def.js.
+
+**For a different tag name:**
+```javascript
+// my-ticker-def.js
+import { TimeTickerElement } from 'time-ticker/time-ticker-element.js';
+import { wireFeatures } from 'time-ticker/time-ticker-features.js';
+
+await wireFeatures(TimeTickerElement);
+customElements.define('my-ticker', TimeTickerElement);
+```
+
+**For a scoped registry:**
+```javascript
+import { TimeTickerElement } from 'time-ticker/time-ticker-element.js';
+import { wireFeatures } from 'time-ticker/time-ticker-features.js';
+
+await wireFeatures(TimeTickerElement);
+scopedRegistry.define('time-ticker', TimeTickerElement);
+```
+
+**For DI / testing:**
+```javascript
+import { TimeTickerElement } from 'time-ticker/time-ticker-element.js';
+import { wireFeatures } from 'time-ticker/time-ticker-features.js';
+import { MockTimeTicker } from './mocks.js';
+
+await wireFeatures(TimeTickerElement, { timeTicker: { spawn: MockTimeTicker } });
+customElements.define('time-ticker', TimeTickerElement);
+```
+
 ## Viewing Demos Locally
 
 1. Install git
