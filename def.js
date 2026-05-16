@@ -4,6 +4,9 @@ import { RoundaboutFeature } from 'roundabout-lib/RoundaboutFeature.js';
 import 'assign-gingerly/assignFeatures.js';
 
 customElements.assignFeatures(TimeTickerElement, {
+    timeTicker: {
+        spawn: TimeTicker
+    },
     roundabout: {
         spawn: RoundaboutFeature,
         customData: {
@@ -30,7 +33,8 @@ customElements.assignFeatures(TimeTickerElement, {
                 yields: {
                     item: {
                         from: 'items',
-                        atIndex: 'idx'
+                        atIndex: 'idx',
+                        outOfBounds: 'clamp'
                     }
                 }
             }
@@ -46,9 +50,7 @@ customElements.assignFeatures(TimeTickerElement, {
             }
         }
     },
-    timeTicker: {
-        spawn: TimeTicker
-    }
+
 });
 
 customElements.define('time-ticker', TimeTickerElement);
