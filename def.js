@@ -2,6 +2,9 @@ import { TimeTickerElement } from './time-ticker-element.js';
 import { TimeTicker } from './TimeTicker.js';
 import { RoundaboutFeature } from 'roundabout-lib/RoundaboutFeature.js';
 import 'assign-gingerly/assignFeatures.js';
+import cef from './cef.json' with { type: 'json' };
+
+const { roundabout } = cef.features;
 
 customElements.assignFeatures(TimeTickerElement, {
     timeTicker: {
@@ -9,46 +12,8 @@ customElements.assignFeatures(TimeTickerElement, {
     },
     roundabout: {
         spawn: RoundaboutFeature,
-        customData: {
-            raConfig: {
-                compacts: {
-                    on_tick_of_timeTicker_inc_idx_by: 1,
-                    when_item_changes_dispatch: 'value-changed',
-                },
-                merges: [
-                    {
-                        ifKeyIn: ['duration'],
-                        assign: {
-                            '?.timeTicker?.duration': '?.duration'
-                        }
-                    }, 
-                    {
-                        ifKeyIn: ['disabled'],
-                        assign: {
-                            '?.timeTicker?.disabled': '?.disabled'
-                        }
-                    },
-                    
-                ],
-                yields: {
-                    item: {
-                        from: 'items',
-                        atIndex: 'idx',
-                        outOfBounds: 'clamp'
-                    }
-                }
-            }
-        },
-        withAttrs: {
-            items: 'items',
-            _items: {
-                instanceOf: 'Array'
-            },
-            duration: 'duration',
-            _duration:  {
-                instanceOf: 'Number'
-            }
-        }
+        customData: roundabout.customData,
+        withAttrs: roundabout.withAttrs,
     },
 
 });
