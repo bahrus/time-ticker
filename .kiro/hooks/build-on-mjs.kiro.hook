@@ -1,0 +1,16 @@
+{
+  "enabled": true,
+  "name": "Build on .mjs change",
+  "description": "Prompts to run npm run build whenever a .mjs file is edited",
+  "version": "1",
+  "when": {
+    "type": "fileEdited",
+    "patterns": [
+      "*.mjs"
+    ]
+  },
+  "then": {
+    "type": "askAgent",
+    "prompt": "A .mjs file was changed. Run npm run build to regenerate the output."
+  }
+}

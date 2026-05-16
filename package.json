@@ -5,6 +5,7 @@
   "type": "module",
   "main": "TimeTicker.js",
   "scripts": {
+    "build": "node cef.mjs > cef.json",
     "serve": "node ./node_modules/spa-ssi/serve.js",
     "test": "playwright test",
     "update": "ncu -u && npm install",
