@@ -17,6 +17,8 @@
     "spa-ssi": "0.0.27"
   },
   "dependencies": {
+    "assign-gingerly": "0.0.42",
+    "roundabout-lib": "0.0.14"
   },
   "repository": {
     "type": "git",
