@@ -1,6 +1,7 @@
 import { TimeTickerElement } from './time-ticker-element.js';
 import { TimeTicker } from './TimeTicker.js';
 import { RoundaboutFeature } from 'roundabout-lib/RoundaboutFeature.js';
+import 'assign-gingerly/assignFeatures.js';
 
 customElements.assignFeatures(TimeTickerElement, {
     roundabout: {
@@ -37,7 +38,11 @@ customElements.assignFeatures(TimeTickerElement, {
         withAttrs: {
             items: 'items',
             _items: {
-                instancweOf: 'Array'
+                instanceOf: 'Array'
+            },
+            duration: 'duration',
+            _duration:  {
+                instanceOf: 'Number'
             }
         }
     },
