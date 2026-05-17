@@ -26,7 +26,7 @@ const props = {
  */
 export const raConfig  = {
     compacts: {
-        [`on_tick_of_timeTicker_inc_${props.idx}_by`]: 1,
+        [`on_tick_of_${props.timeTicker}_inc_${props.idx}_by`]: 1,
         [`when_${props.item}_changes_dispatch`]: 'value-changed',
     },
     merges: [
