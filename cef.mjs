@@ -17,7 +17,9 @@ const props = {
     duration: 'duration',
     idx: 'idx',
     item: 'item',
-    timeTicker: 'timeTicker'
+    timeTicker: 'timeTicker',
+    name: 'name',
+    value: 'value'
 };
 
 
@@ -64,6 +66,16 @@ const withAttrs = {
     [props.duration]: props.duration,
     [`_${props.duration}`]: {
         instanceOf: 'Number'
+    },
+    [props.name]: props.name,
+    [`_${props.name}`]: {
+        sourceOfTruth: true,
+        valIfNull: ''
+    },
+    [props.disabled]: props.disabled,
+    [`_${props.disabled}`]: {
+        sourceOfTruth: true,
+        instanceOf: Boolean,
     }
 };
 
