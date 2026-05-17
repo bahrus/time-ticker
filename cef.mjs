@@ -2,35 +2,51 @@
 
 import { roundabout } from 'roundabout-lib';
 
+
+
 /** @import {RAConfig} from './types/roundabout/types.d.ts' */
 /** @import {T} from './types/time-ticker/types' */
 /** @import {AttrPatterns} from './types/assign-gingerly/types.d.ts' */
+
+/**
+ * @type {{ [K in keyof T]: K }}
+ */
+const props = {
+    items: 'items',
+    disabled: 'disabled',
+    duration: 'duration',
+    idx: 'idx',
+    item: 'item',
+    timeTicker: 'timeTicker'
+};
+
+
 /**
  * @type {RAConfig<T,T,T,unknown,'tick'>}
  */
 export const raConfig  = {
     compacts: {
-        on_tick_of_timeTicker_inc_idx_by: 1,
-        when_item_changes_dispatch: 'value-changed',
+        [`on_tick_of_timeTicker_inc_${props.idx}_by`]: 1,
+        [`when_${props.item}_changes_dispatch`]: 'value-changed',
     },
     merges: [
         {
-            ifKeyIn: ['duration'],
+            ifKeyIn: [props.duration],
             assign: {
                 '?.timeTicker?.duration': '?.duration'
             }
         },
         {
-            ifKeyIn: ['disabled'],
+            ifKeyIn: [props.disabled],
             assign: {
                 '?.timeTicker?.disabled': '?.disabled'
             }
         }
     ],
     yields: {
-        item: {
-            from: 'items',
-            atIndex: 'idx',
+        [props.item]: {
+            from: props.items,
+            atIndex: props.idx,
             outOfBounds: 'clamp',
         }
     }
@@ -40,12 +56,12 @@ export const raConfig  = {
  * @type {AttrPatterns<T>}
  */
 const withAttrs = {
-    items: 'items',
-    _items: {
+    [props.items]: props.items,
+    [`_${props.items}`]: {
         instanceOf: 'Array'
     },
-    duration: 'duration',
-    _duration: {
+    [props.duration]: props.duration,
+    [`_${props.duration}`]: {
         instanceOf: 'Number'
     }
 };
