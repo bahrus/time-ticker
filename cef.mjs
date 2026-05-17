@@ -3,10 +3,10 @@
 import { roundabout } from 'roundabout-lib';
 
 /** @import {RAConfig} from './types/roundabout/types.d.ts' */
-/** @import {TimeTickerElementAllProps, Actions} from './types/time-ticker/types' */
+/** @import {T} from './types/time-ticker/types' */
 /** @import {AttrPatterns} from './types/assign-gingerly/types.d.ts' */
 /**
- * @type {RAConfig<TimeTickerElementAllProps>}
+ * @type {RAConfig<T,T,T,unknown,'tick'>}
  */
 export const raConfig  = {
     compacts: {
@@ -37,7 +37,7 @@ export const raConfig  = {
 }
 
 /**
- * @type {AttrPatterns<TimeTickerElementAllProps>}
+ * @type {AttrPatterns<T>}
  */
 const withAttrs = {
     items: 'items',
