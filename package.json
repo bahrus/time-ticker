@@ -13,12 +13,13 @@
     "chrome": "npx playwright cr http://localhost:8000"
   },
   "devDependencies": {
-    "assign-gingerly": "0.0.42",
+    "assign-gingerly": "0.0.43",
     "@playwright/test": "1.60.0",
     "spa-ssi": "0.0.27"
   },
   "dependencies": {
-    "assign-gingerly": "0.0.42",
+    "assign-gingerly": "0.0.43",
+    "face-up": "0.0.2",
     "on-to-me": "0.0.49",
     "roundabout-lib": "0.0.16",
     "truth-sourcer": "0.0.1"
