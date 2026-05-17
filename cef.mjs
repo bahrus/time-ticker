@@ -25,6 +25,7 @@ const props = {
  * @type {RAConfig<T,T,T,unknown,'tick'>}
  */
 export const raConfig  = {
+    propagate: /** @type {Array<keyof T>} */ (Object.keys(props)),
     compacts: {
         [`on_tick_of_${props.timeTicker}_inc_${props.idx}_by`]: 1,
         [`when_${props.item}_changes_dispatch`]: 'value-changed',
