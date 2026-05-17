@@ -1,4 +1,9 @@
 export class TimeTickerElement extends HTMLElement {
+    propagator = new EventTarget();
+    #internals;
+
+    static formAssociated = true;
+
     static supportedFeatures = { 
         timeTicker: {}, 
         roundabout: {}, 
@@ -9,6 +14,20 @@ export class TimeTickerElement extends HTMLElement {
                     hostPropagator: instance.propagator
                 };
             }
+        },
+        faceUp: {
+            callbackForwarding: ['connectedCallback', 'disconnectedCallback', 'formDisabledCallback', 'formResetCallback', 'formStateRestoreCallback'],
+            getSharedContext(instance) {
+                return {
+                    internals: instance.#internals,
+                    hostPropagator: instance.propagator
+                };
+            }
         }
+    }
+
+    constructor() {
+        super();
+        this.#internals = this.attachInternals();
     }
 }

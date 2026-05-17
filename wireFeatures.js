@@ -1,6 +1,7 @@
 import { TimeTicker } from './TimeTicker.js';
 import { RoundaboutFeature } from 'roundabout-lib/RoundaboutFeature.js';
 import { TruthSourcer } from 'truth-sourcer/TruthSourcer.js';
+import { FaceUp } from 'face-up/FaceUp.js';
 import 'assign-gingerly/assignFeatures.js';
 import cef from './cef.json' with { type: 'json' };
 
@@ -16,6 +17,7 @@ export async function wireFeatures(ElementClass, overrides = {}) {
             withAttrs: overrides.roundabout?.withAttrs || withAttrs,
             callbackForwarding: ['connectedCallback'],
         },
-        truthSourcer: { spawn: overrides.truthSourcer?.spawn || TruthSourcer }
+        truthSourcer: { spawn: overrides.truthSourcer?.spawn || TruthSourcer },
+        faceUp: { spawn: overrides.faceUp?.spawn || FaceUp }
     });
 }
