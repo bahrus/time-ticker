@@ -20,7 +20,7 @@
   "dependencies": {
     "assign-gingerly": "0.0.42",
     "on-to-me": "0.0.49",
-    "roundabout-lib": "0.0.15"
+    "roundabout-lib": "0.0.16"
   },
   "repository": {
     "type": "git",
