@@ -3,21 +3,20 @@ import { RoundaboutFeature } from 'roundabout-lib/RoundaboutFeature.js';
 import { TruthSourcer } from 'truth-sourcer/TruthSourcer.js';
 import { FaceUp } from 'face-up/FaceUp.js';
 import 'assign-gingerly/assignFeatures.js';
-import cef from './cef.json' with { type: 'json' };
 
-export async function wireFeatures(ElementClass, overrides = {}) {
-    const { roundabout } = cef.features;
+export async function wireFeatures(ElementClass, cfg) {
+    const { roundabout } = cfg.features;
     const { customData, withAttrs } = roundabout;
     
     await customElements.assignFeatures(ElementClass, {
-        timeTicker: { spawn: overrides.timeTicker?.spawn || TimeTicker },
+        timeTicker: { spawn: TimeTicker },
         roundabout: {
-            spawn: overrides.roundabout?.spawn || RoundaboutFeature,
-            customData: overrides.roundabout?.customData || customData,
-            withAttrs: overrides.roundabout?.withAttrs || withAttrs,
+            spawn: RoundaboutFeature,
+            customData,
+            withAttrs,
             callbackForwarding: ['connectedCallback'],
         },
-        truthSourcer: { spawn: overrides.truthSourcer?.spawn || TruthSourcer },
-        faceUp: { spawn: overrides.faceUp?.spawn || FaceUp }
+        truthSourcer: { spawn: TruthSourcer },
+        faceUp: { spawn: FaceUp }
     });
 }

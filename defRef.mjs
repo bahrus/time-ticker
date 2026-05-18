@@ -5,9 +5,9 @@ import { faceUpMerges } from 'face-up/RAConfig.mjs';
 
 
 
-/** @import {RAConfig} from './types/roundabout/types.d.ts' */
+/** @import {RAConfig} from './types/roundabout/types' */
 /** @import {T} from './types/time-ticker/types' */
-/** @import {AttrPatterns} from './types/assign-gingerly/types.d.ts' */
+/** @import {AttrPatterns} from './types/assign-gingerly/types' */
 
 /**
  * @type {{ [K in keyof T]: K }}

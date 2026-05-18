@@ -11,13 +11,56 @@
                         "item",
                         "timeTicker",
                         "name",
-                        "value"
+                        "value",
+                        "required",
+                        "state",
+                        "validationMessage"
                     ],
                     "compacts": {
                         "on_tick_of_timeTicker_inc_idx_by": 1,
                         "when_item_changes_dispatch": "value-changed"
                     },
                     "merges": [
+                        {
+                            "ifKeyIn": [
+                                "value"
+                            ],
+                            "assign": {
+                                "?.faceUp?.value": "?.value"
+                            }
+                        },
+                        {
+                            "ifKeyIn": [
+                                "state"
+                            ],
+                            "assign": {
+                                "?.faceUp?.state": "?.state"
+                            }
+                        },
+                        {
+                            "ifKeyIn": [
+                                "disabled"
+                            ],
+                            "assign": {
+                                "?.faceUp?.disabled": "?.disabled"
+                            }
+                        },
+                        {
+                            "ifKeyIn": [
+                                "required"
+                            ],
+                            "assign": {
+                                "?.faceUp?.required": "?.required"
+                            }
+                        },
+                        {
+                            "ifKeyIn": [
+                                "validationMessage"
+                            ],
+                            "assign": {
+                                "?.faceUp?.validationMessage": "?.validationMessage"
+                            }
+                        },
                         {
                             "ifKeyIn": [
                                 "duration"
