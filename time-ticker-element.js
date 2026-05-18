@@ -20,7 +20,6 @@ export class TimeTickerElement extends HTMLElement {
             getSharedContext(instance) {
                 return {
                     internals: instance.#internals,
-                    hostPropagator: instance.propagator
                 };
             }
         }

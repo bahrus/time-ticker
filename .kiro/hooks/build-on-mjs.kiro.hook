@@ -6,7 +6,7 @@
   "when": {
     "type": "fileEdited",
     "patterns": [
-      "*.mjs"
+      "**/*.mjs"
     ]
   },
   "then": {
