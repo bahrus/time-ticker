@@ -1,7 +1,7 @@
 //@ts-check
 
 import { roundabout } from 'roundabout-lib';
-import { faceUpMerges } from 'face-up/RAConfig.mjs';
+//import { faceUpMerges } from 'face-up/RAConfig.mjs';
 
 
 
@@ -37,7 +37,7 @@ export const raConfig  = {
         [`when_${props.item}_changes_dispatch`]: 'value-changed',
     },
     merges: [
-        ...faceUpMerges,
+        //...faceUpMerges,
         {
             ifKeyIn: [props.duration],
             assign: {
