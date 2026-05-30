@@ -1,32 +1,8 @@
-export class TimeTickerElement extends HTMLElement {
-    propagator = new EventTarget();
-    #internals;
+import { ElementMaker } from 'el-maker/ElementMaker.js';
 
-    static formAssociated = true;
-
-    static supportedFeatures = { 
-        timeTicker: {}, 
-        roundabout: {}, 
-        truthSourcer: {
-            callbackForwarding: ['connectedCallback', 'attributeChangedCallback'],
-            getSharedContext(instance) {
-                return {
-                    hostPropagator: instance.propagator
-                };
-            }
-        },
-        faceUp: {
-            callbackForwarding: ['connectedCallback', 'disconnectedCallback', 'formDisabledCallback', 'formResetCallback', 'formStateRestoreCallback'],
-            getSharedContext(instance) {
-                return {
-                    internals: instance.#internals,
-                };
-            }
-        }
-    }
-
-    constructor() {
-        super();
-        this.#internals = this.attachInternals();
-    }
+export class TimeTickerElement extends ElementMaker {
+    static supportedFeatures = {
+        ...ElementMaker.supportedFeatures,
+        timeTicker: {},
+    };
 }
