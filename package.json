@@ -13,13 +13,13 @@
     "chrome": "npx playwright cr http://localhost:8000"
   },
   "devDependencies": {
-    "assign-gingerly": "0.0.48",
+    "assign-gingerly": "0.0.50",
     "@playwright/test": "1.60.0",
     "spa-ssi": "0.0.27"
   },
   "dependencies": {
-    "assign-gingerly": "0.0.48",
-    "el-maker": "0.0.0"
+    "assign-gingerly": "0.0.50",
+    "el-maker": "0.0.1"
   },
   "repository": {
     "type": "git",
