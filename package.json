@@ -1,6 +1,6 @@
 {
   "name": "time-ticker",
-  "version": "0.0.31",
+  "version": "0.0.32",
   "description": "Custom element feature that provides precise, drift-correcting ticking",
   "type": "module",
   "main": "TimeTicker.js",
