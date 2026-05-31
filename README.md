@@ -4,8 +4,6 @@
 
 <a href="https://nodei.co/npm/time-ticker/"><img src="https://nodei.co/npm/time-ticker.png"></a>
 
-<img src="http://img.badgesize.io/https://cdn.jsdelivr.net/npm/time-ticker@0.0.2/dist/time-ticker.iife.min.js?compression=gzip">
-
 ![](https://media.giphy.com/media/Hlb53yZwhKobm/giphy.gif)
 
 This package contains two exported modules:
@@ -62,28 +60,50 @@ To use, import time-ticker/def.js.
 ```javascript
 // my-ticker-def.js
 import { TimeTickerElement } from 'time-ticker/time-ticker-element.js';
-import { wireFeatures } from 'time-ticker/time-ticker-features.js';
+import { wireFeatures } from 'time-ticker/wireFeatures.js';
+import defRef from 'time-ticker/defRef.json' with { type: 'json' };
 
-await wireFeatures(TimeTickerElement);
+await wireFeatures(TimeTickerElement, defRef);
 customElements.define('my-ticker', TimeTickerElement);
 ```
 
 **For a scoped registry:**
 ```javascript
 import { TimeTickerElement } from 'time-ticker/time-ticker-element.js';
-import { wireFeatures } from 'time-ticker/time-ticker-features.js';
+import { wireFeatures } from 'time-ticker/wireFeatures.js';
+import defRef from 'time-ticker/defRef.json' with { type: 'json' };
 
-await wireFeatures(TimeTickerElement);
+await wireFeatures(TimeTickerElement, defRef);
 scopedRegistry.define('time-ticker', TimeTickerElement);
 ```
 
 **For DI / testing:**
 ```javascript
 import { TimeTickerElement } from 'time-ticker/time-ticker-element.js';
-import { wireFeatures } from 'time-ticker/time-ticker-features.js';
+import { resolveAndAssignFeatures } from 'assign-gingerly/resolveAndAssignFeatures.js';
 import { MockTimeTicker } from './mocks.js';
+import defRef from 'time-ticker/defRef.json' with { type: 'json' };
 
-await wireFeatures(TimeTickerElement, { timeTicker: { spawn: MockTimeTicker } });
+const { roundabout } = defRef.features;
+
+await resolveAndAssignFeatures(TimeTickerElement, {
+    timeTicker: { spawn: MockTimeTicker },
+    truthSourcer: {
+        callbackForwarding: ['connectedCallback', 'attributeChangedCallback'],
+    },
+    faceUp: {
+        customData: { integrateWithRoundabout: true },
+        callbackForwarding: [
+            'connectedCallback', 'disconnectedCallback',
+            'formDisabledCallback', 'formResetCallback', 'formStateRestoreCallback',
+        ],
+    },
+    roundabout: {
+        customData: roundabout.customData,
+        withAttrs: roundabout.withAttrs,
+        callbackForwarding: ['connectedCallback'],
+    },
+});
 customElements.define('time-ticker', TimeTickerElement);
 ```
 
@@ -108,14 +128,14 @@ customElements.define('time-ticker', TimeTickerElement);
 ## Using from ESM Module:
 
 ```JavaScript
-import 'time-ticker/TimeTicker.js';
+import 'time-ticker/def.js';
 ```
 
 ## Using from CDN:
 
 ```html
 <script type=module crossorigin=anonymous>
-    import 'https://esm.sh/do-inc';
+    import 'https://esm.sh/time-ticker/def.js';
 </script>
 ```
 
