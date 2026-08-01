@@ -45,7 +45,7 @@
     <script type=module>
         const el = document.querySelector('test-element');
         let count = 0;
-        el.addEventListener('value-changed', () => {
+        el.timeTicker.addEventListener('tick', () => {
             count++;
             document.getElementById('output').textContent = `Ticks: ${count}`;
         });
