@@ -24,8 +24,11 @@
         setTimeout(() => {
             console.log('adding event listener');
             timeTicker.timeTicker.addEventListener('tick', e => {
-                //console.log({e});
-            })
+                console.log({e});
+            });
+            timeTicker.addEventListener('value-changed', f => {
+                console.log({f});
+            });
         }, 2000);
     </script>
     <on-to-me on=value-changed to=[-text] me=1 vft=item val=target.item></on-to-me>
